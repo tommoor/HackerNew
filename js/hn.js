@@ -40,6 +40,7 @@ var hn = {
 	bindEvents: function(){
 		$('a.filter.remove').live('click', function(){
 			hn.removeFilter($(this).data('filter'));
+			hn.filterStories();
 			$(this).parent().remove();
 		});
 		
@@ -153,7 +154,7 @@ var hn = {
 		
 			// check personal filters
 			if (hn.checkFiltered(title)) {
-				$row.hide();
+				$row.fadeOut();
 				return;
 			} else {
 				$row.fadeIn();

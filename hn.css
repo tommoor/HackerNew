@@ -1,5 +1,6 @@
 body {
 	background: #fdfdfd;
+	margin-top: 40px;
 }
 
 table td,	
@@ -48,11 +49,38 @@ img {
 	padding: 0;
 }
 
+.topsel a:link, 
+.topsel a:visited {
+	color: #222;
+}
+
 .meta {
 	padding: 10px;
 	float: right;
 	height: 20px;
 	width: 80px;
+}
+
+
+/*********** Header Bar **************/
+
+table tr:first-child td:first-child table {
+	background-image: -webkit-gradient( linear, left bottom, left top, color-stop(0.3, rgba(253, 253, 253, 0)), color-stop(0.6, #FDFDFD) );
+	position: fixed;
+	z-index: 1;
+	top: 0;
+	left: 7.5%;
+	padding: 2px 2px 30px 2px !important;
+	width: 85%;
+}
+
+
+/*********** Filters *****************/
+
+.current-filters {
+	position: absolute;
+	list-style: none;
+	right: 0;
 }
 
 .current-filters li a {
