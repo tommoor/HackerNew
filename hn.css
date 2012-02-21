@@ -54,13 +54,46 @@ img {
 	color: #222;
 }
 
-.meta {
-	padding: 10px;
-	float: right;
-	height: 20px;
-	width: 80px;
+
+/*********** Points, Comments & Time **************/
+
+td.title .meta {
+	margin: 0;
+	width: 150px;
+	list-style: none;
+	position: absolute;
+	text-align: center;
+	top: 0;
+	right: 0;
+	background-image: -webkit-gradient(linear, 25% 0%, 0% 0%, from(#FDFDFD), to(rgba(253, 253, 253, 0)));
 }
 
+td.title .meta li {
+	padding-top: 30px;
+	height: 50px;
+	width: 50px;
+	display: inline;
+	float: left;
+	font-size: 11px;
+	opacity: 0.6;
+}
+
+td.title .meta li a {
+	color: #666;
+	font-size: 11px;
+}
+
+tr:last-child td.title .meta {
+	display: none;
+}
+
+.meta li.comments {
+	background: url('chrome-extension://__MSG_@@extension_id__/images/comments.png') no-repeat center 10px;
+}
+
+.meta li.points {
+	background: url('chrome-extension://__MSG_@@extension_id__/images/up.png') no-repeat center 10px;
+}
 
 /*********** Header Bar **************/
 
@@ -91,6 +124,10 @@ table tr:first-child td:first-child table {
 
 
 /*********** News Listings ***********/
+
+table tr:nth-child(3) td table {
+	width: 90%;
+}
 
 td.title {
 	padding: 10px 2px;

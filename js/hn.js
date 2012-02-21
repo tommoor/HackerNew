@@ -164,16 +164,28 @@ var hn = {
 	
 	parseStories: function(){
 		
-		$('td.title a').each(function(){
-			var $row = $(this).parent().parent();
+		$('td.title a:first-child').each(function(){
+			var $title = $(this).parent();
+			var $row = $title.parent();
 			var $subtext = $row.next().find('.subtext');
 			var domain = $('.comhead', $row).text().replace('(', '').replace(')', '');
-			//var score = $('span', $subtext).text().replace(/points?/i, '');
-			//var comments = $('a:last-child', $subtext).text().replace(/comments?/i, '');
-						
+			var $score = $('span', $subtext).clone();
+			var $comments = $('a:last-child', $subtext).clone();
+			
+			// formatting	
+			$score = ($score.outerHTML() || '').replace(/points?/i, '');
+			$comments = ($comments.outerHTML() || '').replace(/comments?/i, '');
+			
 			// changes
 			$('.comhead', $row).text(domain);
-			$row.append('<div class="meta" />');
+			$subtext.remove();
+			
+			// append new meta
+			$title.append('<ul class="meta">'+
+			'<li class="comments">'+$comments+'</li>'+
+			'<li class="points">'+$score+'</li>'+
+			'<li class="time">56</li>'+
+			'</ul>');
 		});
 	},
 	
@@ -219,5 +231,11 @@ var hn = {
 		}
 	}
 };
+
+(function($) {
+  $.fn.outerHTML = function() {
+    return $(this).clone().wrap('<div></div>').parent().html();
+  }
+})(jQuery);
 
 $(hn.init);
