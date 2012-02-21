@@ -1,0 +1,12 @@
+{
+	"name": "HackerNew",
+	"version": "0.1",
+	"description": "Making hacker news more useful.",
+	"content_scripts": [
+	    {
+	      "matches": ["http://news.ycombinator.com/*"],
+	      "css": ["hn.css"],
+	      "js": ["js/jquery-1.7.1.min.js", "js/hn.js"]
+	    }
+	]
+}

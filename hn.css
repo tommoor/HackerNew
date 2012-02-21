@@ -1,0 +1,113 @@
+body {
+	background: #fdfdfd;
+}
+
+table td,	
+table {
+	background: transparent;
+}
+
+/*********** Header Logo ***********/
+
+table tr td table tr td {
+	width: auto;
+	position: relative;
+}
+
+table tr td table tr {
+	height: auto !important;
+}
+
+img {	
+	display: none;
+}
+
+.comhead {
+	display: block;
+}
+
+.pagetop {
+	color: #aaa;
+	display: block;
+	padding-left: 12px;
+	padding-bottom: 10px;
+}
+
+.pagetop a {
+	padding: 4px;
+	color: #424242;
+}
+
+.pagetop b {
+	display: none;
+}
+
+.pagetop b a,
+.pagetop b a:visited {
+	color: #424242;
+	padding: 0;
+}
+
+.meta {
+	padding: 10px;
+	float: right;
+	height: 20px;
+	width: 80px;
+}
+
+.current-filters li a {
+	display: block;
+	padding: 2px;
+	background: #fff;
+}
+
+
+/*********** News Listings ***********/
+
+td.title {
+	padding: 10px 2px;
+}
+
+td.title:first-child {
+	line-height: 1.2;
+	font-size: 20px;
+	position: relative;
+	left: 0;
+	color: #666;
+	opacity: 0.6;
+}
+
+td tr td center a {
+	opacity: 0.1;
+	position: absolute;
+	left: -20px;
+	top: 38px;
+	display: block;
+	
+	width: 0;
+	height: 0;
+	border-left: 8px solid transparent;
+	border-right: 8px solid transparent;
+	border-bottom: 8px solid #424242;
+	
+	-webkit-transition: all 0.2s ease-in;
+}
+
+td tr:hover td center a {
+	opacity: 1;
+}
+
+td.title a {
+	font-size: 20px;
+	letter-spacing: -1px;
+	color: #3299BB;
+	text-shadow: 0 1px 0 #fff;
+}
+
+td.title a:visited {
+	color: #9AD2E4;
+}
+
+td.subtext {
+	display: none;
+}
