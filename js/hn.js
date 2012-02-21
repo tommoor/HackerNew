@@ -4,13 +4,21 @@ var hn = {
 	loaded: [],
 	identport: null,
 	identelem: null,
+	average_points: 0,
+	average_comments: 0,
 	
 	init: function(){
 	
+		hn.styleForms();
 		hn.createProfileBubble();
 		hn.createFilterMenu();
 		hn.parseStories();
 		hn.bindEvents();
+	},
+	
+	styleForms: function(){
+	
+		$('input[type=submit]').addClass('btn');
 	},
 	
 	createProfileBubble: function(){
@@ -168,9 +176,10 @@ var hn = {
 			var $title = $(this).parent();
 			var $row = $title.parent();
 			var $subtext = $row.next().find('.subtext');
-			var domain = $('.comhead', $row).text().replace('(', '').replace(')', '');
+			var domain = $('.comhead', $row).text().replace(/(\(|\))/g, '');
 			var $score = $('span', $subtext).clone();
 			var $comments = $('a:last-child', $subtext).clone();
+			var time = $.trim($subtext.contents().filter(function(){ return(this.nodeType == 3); }).text().replace(/(by|\|)/gi, ''));
 			
 			// formatting	
 			$score = ($score.outerHTML() || '').replace(/points?/i, '');
@@ -178,13 +187,12 @@ var hn = {
 			
 			// changes
 			$('.comhead', $row).text(domain);
-			$subtext.remove();
 			
 			// append new meta
 			$title.append('<ul class="meta">'+
 			'<li class="comments">'+$comments+'</li>'+
 			'<li class="points">'+$score+'</li>'+
-			'<li class="time">56</li>'+
+			'<li class="time">'+time+'</li>'+
 			'</ul>');
 		});
 	},

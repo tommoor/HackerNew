@@ -6,7 +6,7 @@
 	"content_scripts": [
 	    {
 	      "matches": ["http://news.ycombinator.com/*"],
-	      "css": ["hn.css"],
+	      "css": ["forms.css", "hn.css"],
 	      "js": [
 			"js/libs/jquery-1.7.1.min.js",
 			"js/libs/twitter.text.js",

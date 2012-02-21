@@ -59,7 +59,7 @@ img {
 
 td.title .meta {
 	margin: 0;
-	width: 150px;
+	width: 180px;
 	list-style: none;
 	position: absolute;
 	text-align: center;
@@ -75,11 +75,12 @@ td.title .meta li {
 	display: inline;
 	float: left;
 	font-size: 11px;
-	opacity: 0.6;
+	opacity: 0.4;
+	-webkit-transition: all 0.2s ease-in;
 }
 
 td.title .meta li a {
-	color: #666;
+	color: #333;
 	font-size: 11px;
 }
 
@@ -87,17 +88,22 @@ tr:last-child td.title .meta {
 	display: none;
 }
 
-.meta li.comments {
+td.title .meta li.comments {
 	background: url('chrome-extension://__MSG_@@extension_id__/images/comments.png') no-repeat center 10px;
 }
 
-.meta li.points {
+td.title .meta li.points {
 	background: url('chrome-extension://__MSG_@@extension_id__/images/up.png') no-repeat center 10px;
+}
+
+td.title .meta li.time {
+	width: 80px;
+	background: url('chrome-extension://__MSG_@@extension_id__/images/time.png') no-repeat center 10px;
 }
 
 /*********** Header Bar **************/
 
-table tr:first-child td:first-child table {
+center > table > tbody > tr:first-child > td:first-child > table {
 	background-image: -webkit-gradient( linear, left bottom, left top, color-stop(0.3, rgba(253, 253, 253, 0)), color-stop(0.6, #FDFDFD) );
 	position: fixed;
 	z-index: 1;
@@ -162,6 +168,10 @@ td tr:hover td center a {
 	opacity: 1;
 }
 
+td tr:hover td.title .meta li {
+	opacity: 0.9;
+}
+
 td.title a {
 	font-size: 20px;
 	letter-spacing: -1px;
@@ -174,18 +184,28 @@ td.title a:visited {
 }
 
 td.subtext {
-	/*display: none;*/
+	display: none;
+}
+
+
+/*********** Story Page ***************/
+
+form textarea {
+	width: 100%;
+	margin: 0 0 -10px 0;
 }
 
 
 /*********** Profile Bubble ***********/
 
 #profile-bubble {
+	display: none;
 	background: #fff;
 	border-radius: 4px;
 	border: 1px solid #ccc;
 	padding: 10px;
 	box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+	z-index: 100;
 }
 
 #profile-bubble ul {
