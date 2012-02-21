@@ -30,7 +30,7 @@ img {
 .pagetop {
 	color: #aaa;
 	display: block;
-	padding-left: 12px;
+	padding-left: 25px;
 	padding-bottom: 10px;
 	margin-top: 6px;
 }
@@ -43,7 +43,7 @@ img {
 .pagetop b a,
 .pagetop b a:visited {
 	color: #424242;
-	padding: 4px 16px;
+	padding: 4px 20px 4px 0;	
 	letter-spacing: -1px;
 }
 
@@ -115,7 +115,30 @@ center > table > tbody > tr:first-child > td:first-child > table {
 
 /*********** Filters *****************/
 
+a.settings {
+	display: block;
+	width: 16px;
+	height: 16px;
+	background: url('chrome-extension://__MSG_@@extension_id__/images/settings.png') no-repeat center center;
+	text-indent: -9000px;
+	float: right;
+	margin-top: -3px;
+	cursor: pointer;
+}
+
+a.logout {
+	display: block;
+	width: 16px;
+	height: 16px;
+	background: url('chrome-extension://__MSG_@@extension_id__/images/logout.png') no-repeat center center;
+	text-indent: -9000px;
+	float: right;
+	margin-left: 10px;
+	margin-top: -3px;
+}
+
 .current-filters {
+	display: none;
 	position: absolute;
 	list-style: none;
 	right: 0;
@@ -130,8 +153,13 @@ center > table > tbody > tr:first-child > td:first-child > table {
 
 /*********** News Listings ***********/
 
-table tr:nth-child(3) td table {
+table tr td table {
 	width: 90%;
+}
+
+table tr:first-child td table {
+	width: 100%;
+	margin-left: 0;
 }
 
 td.title {
@@ -188,6 +216,15 @@ td.subtext {
 
 
 /*********** Story Page ***************/
+
+html.item table tr td table {
+	margin-left: 32px;
+}
+
+html.item table tr:first-child td table {
+	width: 100%;
+	margin-left: 0;
+}
 
 form textarea {
 	width: 100%;

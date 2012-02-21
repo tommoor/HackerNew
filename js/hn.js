@@ -9,16 +9,29 @@ var hn = {
 	
 	init: function(){
 	
-		hn.styleForms();
+		hn.getPage();
+		hn.styleElements();
 		hn.createProfileBubble();
 		hn.createFilterMenu();
 		hn.parseStories();
 		hn.bindEvents();
 	},
 	
-	styleForms: function(){
+	getPage: function(){
+	
+		switch(window.location.pathname) {
+			case '/item':
+				$('html').addClass('item');
+				break;
+			default:
+				$('html').addClass('news');
+		}
+	},
+	
+	styleElements: function(){
 	
 		$('input[type=submit]').addClass('btn');
+		$('.pagetop a[href^="/r"]').addClass('logout').text('').attr('title', 'Log Out');
 	},
 	
 	createProfileBubble: function(){
@@ -27,8 +40,8 @@ var hn = {
 	},
 	
 	createFilterMenu: function(){
-	
-		$('.pagetop').last().append(' | <a class="filters">filters</a> <input id="add-filter" placeholder="Filter stories containing..." type="text" /><ul class="current-filters"></ul>');
+		//<input id="add-filter" placeholder="Filter stories containing..." type="text" />
+		$('.pagetop').last().append(' <a class="settings" title="Settings"></a> <ul class="current-filters"></ul>');
 		hn.refreshFilters();
 	},
 	
