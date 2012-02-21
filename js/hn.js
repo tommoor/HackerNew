@@ -162,7 +162,7 @@ var hn = {
 		
 			// check personal filters
 			if (hn.checkFiltered(title)) {
-				$row.fadeOut();
+				$row.hide();
 				return;
 			} else {
 				$row.fadeIn();
