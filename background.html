@@ -1,0 +1,25 @@
+<script src="js/libs/jquery-1.7.1.min.js"></script>
+<script src="js/ident/ident-0.1.min.js"></script>
+<script src="js/ident/ident-profile-0.1.min.js"></script>
+<script src="js/ident/ident-content-0.1.min.js"></script>
+<script src="js/ident/ident-yql-parser-0.1.min.js"></script>
+<script src="js/ident/ident-twitter-parser-0.1.min.js"></script>
+<script src="js/ident/web-address.min.js"></script>
+
+<script>
+	chrome.extension.onConnect.addListener(function(port) {
+
+		port.onMessage.addListener(function(data) {			
+			// what to do when we get a response?
+			$(document).bind('ident:update', function(){
+				port.postMessage(ident.identities);				
+			});
+			
+			// Properties for search
+	        ident.useInwardEdges = true;
+	        ident.iconPath = "images/icons/";
+	        ident.addPrimaryURL = true;
+			ident.search(data.urls.join(','));
+	  	});
+	});
+</script>

@@ -2,11 +2,16 @@
 	"name": "HackerNew",
 	"version": "0.1",
 	"description": "Making hacker news more useful.",
+	"background_page": "background.html",
 	"content_scripts": [
 	    {
 	      "matches": ["http://news.ycombinator.com/*"],
 	      "css": ["hn.css"],
-	      "js": ["js/jquery-1.7.1.min.js", "js/hn.js"]
+	      "js": [
+			"js/libs/jquery-1.7.1.min.js",
+			"js/libs/twitter.text.js",
+			"js/hn.js"
+		  ]
 	    }
 	]
 }

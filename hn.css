@@ -109,5 +109,26 @@ td.title a:visited {
 }
 
 td.subtext {
-	display: none;
+	/*display: none;*/
+}
+
+
+/*********** Profile Bubble ***********/
+
+#profile-bubble {
+	background: #fff;
+	border-radius: 4px;
+	border: 1px solid #ccc;
+	padding: 10px;
+	box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+#profile-bubble ul {
+	padding: 0;
+	margin: 0;
+	list-style: none;
+}
+
+#profile-bubble ul li span.username {
+	float: right;
 }

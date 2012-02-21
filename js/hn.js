@@ -1,10 +1,21 @@
 var hn = {
 	
+	loading: [],
+	loaded: [],
+	identport: null,
+	identelem: null,
+	
 	init: function(){
 	
+		hn.createProfileBubble();
 		hn.createFilterMenu();
 		hn.parseStories();
 		hn.bindEvents();
+	},
+	
+	createProfileBubble: function(){
+	
+		$('body').append('<div id="profile-bubble" />');
 	},
 	
 	createFilterMenu: function(){
@@ -39,6 +50,99 @@ var hn = {
 				hn.refreshFilters();
 			}
 		});
+		
+		$('a[href^=user]').live('mouseover', hn.loadUserDetails);
+		$(document).click(hn.closeProfileBubble);
+		
+	},
+	
+	loadUserDetails: function(){
+	
+		var $temp = $('<div/>');
+		var url = $(this).attr('href') + ' table';
+		hn.identelem = $(this);
+		hn.renderProfileBubble();
+		
+		// load user profile page into temporary container
+		$temp.load(url, function(){
+			
+			// twitter's library is far and away the best for extracting urls
+			var urlsWithIndices = twttr.txt.extractUrlsWithIndices($temp.html());
+			var filtered = [];
+			
+		    for (var i = 0; i < urlsWithIndices.length; i++) {
+			
+				// ensure urls are properly formed
+				if(!urlsWithIndices[i].url.match(/^http:\/\//gi)){
+					urlsWithIndices[i].url = 'http://' + urlsWithIndices[i].url;
+				}
+				
+				// filter out any ycombinator that might have got in there
+				if(!urlsWithIndices[i].url.match(/ycombinator/gi)){
+					filtered.push(urlsWithIndices[i].url);
+				}
+		    };
+		
+			if (filtered.length) {
+				// clean list of profile urls :-)
+				hn.loadUserProfiles(filtered);
+			} else {
+				hn.renderProfileBubble(false);
+			}
+		});
+	},
+	
+	loadUserProfiles: function(urls){
+		console.log('Found profile URLS: ' + urls.join(','));
+		
+		// stop loading previous profiles
+		// if (hn.identport) hn.identport.disconnect();
+		
+		var name = 'ident' + (new Date).getTime();
+		var port = chrome.extension.connect({name: name});
+		port.postMessage({urls: urls});
+		port.onMessage.addListener(hn.renderProfileBubble);
+		hn.identport = port;
+	},
+	
+	renderProfileBubble: function(identities){
+		
+		// reset bubble
+		$('#profile-bubble').empty();
+		
+		if (identities && identities.length > 0){
+			var ul = $('<ul class="profile-list"></ul>').appendTo('#profile-bubble');
+
+			for (var x = 0; x < identities.length; x++) {
+				if (identities[x].name != '') {
+					$('<li><a href="' + identities[x].profileUrl  + '"><div class="icon ' + identities[x].spriteClass +  '"></div> <span class="icon-label">' + identities[x].name + '</span></a>&nbsp;<span class="username">(' + identities[x].username + ')</span></li>').appendTo(ul);   
+				} else {
+					$('<li><a href="' + identities[x].profileUrl  + '"><div class="icon ' + identities[x].spriteClass +  '"></div> <span class="icon-label">' + identities[x].domain + '</span></a></li>').appendTo(ul);
+				}
+			}
+		} else if (identities === false) {
+			$('#profile-bubble').html('Nothing found :(');
+		} else {
+			$('#profile-bubble').html('Loading...');
+		}
+		
+		// position correctly
+		var left = hn.identelem.offset().left + (hn.identelem.width()/2);
+		var width = $('#profile-bubble').width()/2;
+		
+		$('#profile-bubble').css({
+			display: 'block',
+			position: 'absolute',
+			top: hn.identelem.offset().top+20,
+			left: left-width
+		})
+	},
+	
+	closeProfileBubble: function(ev){
+	
+		if (!$(ev.target).parents('#profile-bubble').length && ev.target != $('#profile-bubble')[0]) {
+			$('#profile-bubble').fadeOut(200);
+		}
 	},
 	
 	filterStories: function(){
