@@ -4,9 +4,7 @@ var hn = {
 	loaded: [],
 	identport: null,
 	identelem: null,
-	average_points: 0,
-	average_comments: 0,
-	
+
 	init: function(){
 	
 		hn.getPage();
@@ -87,6 +85,8 @@ var hn = {
 		
 		// load user profile page into temporary container
 		$temp.load(url, function(){
+			
+			console.log($temp);
 			
 			// twitter's library is far and away the best for extracting urls
 			var urlsWithIndices = twttr.txt.extractUrlsWithIndices($temp.html());
@@ -191,21 +191,22 @@ var hn = {
 			var $subtext = $row.next().find('.subtext');
 			var domain = $('.comhead', $row).text().replace(/(\(|\))/g, '');
 			var $score = $('span', $subtext).clone();
-			var $comments = $('a:last-child', $subtext).clone();
+			var $comments = $('a[href^=item]', $subtext).clone();
+			var $user = $('a[href^=user]', $subtext).clone();
 			var time = $.trim($subtext.contents().filter(function(){ return(this.nodeType == 3); }).text().replace(/(by|\|)/gi, ''));
 			
 			// formatting	
 			$score = ($score.outerHTML() || '').replace(/points?/i, '');
 			$comments = ($comments.outerHTML() || '').replace(/comments?/i, '');
-			
+
 			// changes
-			$('.comhead', $row).text(domain);
+			$('.comhead', $row).text(domain + ' by ').append($user);
 			
 			// append new meta
 			$title.append('<ul class="meta">'+
 			'<li class="comments">'+$comments+'</li>'+
 			'<li class="points">'+$score+'</li>'+
-			'<li class="time">'+time+'</li>'+
+			'<li class="time"><span>'+time+'</span></li>'+
 			'</ul>');
 		});
 	},

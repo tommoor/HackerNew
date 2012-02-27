@@ -67,18 +67,20 @@ td.title .meta {
 }
 
 td.title .meta li {
+	display: inline;
+	float: left;
+}
+
+td.title .meta li a,
+td.title .meta li span {
 	padding-top: 38px;
 	height: 18px;
 	width: 50px;
-	display: inline;
-	float: left;
+	display: block;
 	font-size: 11px;
 	opacity: 0.4;
 	overflow: hidden;
 	-webkit-transition: all 0.2s ease-in;
-}
-
-td.title .meta li a {
 	color: #333;
 	font-size: 11px;
 }
@@ -87,17 +89,22 @@ tr:last-child td.title .meta {
 	display: none;
 }
 
-td.title .meta li.comments {
+td.title .meta li.comments a {
 	background: url('chrome-extension://__MSG_@@extension_id__/images/comments.png') no-repeat center 15px;
 }
 
-td.title .meta li.points {
+td.title .meta li.points span {
 	background: url('chrome-extension://__MSG_@@extension_id__/images/up.png') no-repeat center 15px;
 }
 
-td.title .meta li.time {
+td.title .meta li.time span {
 	width: 80px;
 	background: url('chrome-extension://__MSG_@@extension_id__/images/time.png') no-repeat center 15px;
+}
+
+td.title .meta li.highlight a,
+td.title .meta li.highlight span {
+	opacity: 0.9;
 }
 
 /*********** Header Bar **************/
@@ -195,7 +202,8 @@ td tr:hover td center a {
 	opacity: 1;
 }
 
-td tr:hover td.title .meta li {
+td tr:hover td.title .meta li a,
+td tr:hover td.title .meta li span {
 	opacity: 0.9;
 }
 
@@ -208,6 +216,11 @@ td.title a {
 
 td.title a:visited {
 	color: #9AD2E4;
+}
+
+td.title .comhead a {
+	color: #444;
+	font-size: 8pt;
 }
 
 td.subtext {
