@@ -85,9 +85,7 @@ var hn = {
 		
 		// load user profile page into temporary container
 		$temp.load(url, function(){
-			
-			console.log($temp);
-			
+						
 			// twitter's library is far and away the best for extracting urls
 			var urlsWithIndices = twttr.txt.extractUrlsWithIndices($temp.html());
 			var filtered = [];
@@ -117,18 +115,34 @@ var hn = {
 	loadUserProfiles: function(urls){
 		console.log('Found profile URLS: ' + urls.join(','));
 		
+		hn.renderProfileBubble([], urls);
+		
 		// stop loading previous profiles
 		// if (hn.identport) hn.identport.disconnect();
 		
 		var name = 'ident' + (new Date).getTime();
 		var port = chrome.extension.connect({name: name});
 		port.postMessage({urls: urls});
-		port.onMessage.addListener(hn.renderProfileBubble);
+		port.onMessage.addListener(function(identities){
+			hn.renderProfileBubble(identities, urls);
+		});
 		hn.identport = port;
 	},
 	
-	renderProfileBubble: function(identities){
+	renderProfileBubble: function(identities, urls){
 		
+		identities = identities || [];
+		urls = urls || [];
+		
+		for(var i in urls) {
+			identities.push({
+				profileUrl: urls[i],
+				spriteClass: 'icon-website',
+				username: urls[i],
+				name: 'Website'
+			});
+		}
+				
 		// reset bubble
 		var $profile = $('#profile-bubble .profile');
 		$profile.empty();
