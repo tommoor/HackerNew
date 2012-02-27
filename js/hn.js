@@ -131,16 +131,19 @@ var hn = {
 	
 	renderProfileBubble: function(identities, urls){
 		
-		identities = identities || [];
-		urls = urls || [];
-		
-		for(var i in urls) {
-			identities.push({
-				profileUrl: urls[i],
-				spriteClass: 'icon-website',
-				username: urls[i],
-				name: 'Website'
-			});
+		if (identities !== false) {
+			
+			identities = identities || [];
+			urls = urls || [];
+
+			for(var i in urls) {
+				identities.push({
+					profileUrl: urls[i],
+					spriteClass: 'icon-website',
+					username: urls[i],
+					name: 'Website'
+				});
+			}
 		}
 				
 		// reset bubble
