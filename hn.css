@@ -248,13 +248,42 @@ form textarea {
 /*********** Profile Bubble ***********/
 
 #profile-bubble {
+	position: relative;
 	display: none;
-	background: #fff;
-	border-radius: 4px;
-	border: 1px solid #ccc;
+	background: rgba(0,0,0,0.9);
 	padding: 10px;
 	box-shadow: 0 2px 10px rgba(0,0,0,0.1);
 	z-index: 100;
+	width: 150px;
+}
+
+#profile-bubble em {
+	position: absolute;
+	top: -6px;
+	left: 75px;
+	width: 0;
+	height: 0;
+	border-left: 6px solid transparent;
+	border-right: 6px solid transparent;
+	border-bottom: 6px solid rgba(0,0,0,0.9);
+}
+
+#profile-bubble a {
+	color: #fff;
+	display: block;
+	padding: 5px 0;
+	overflow: hidden;
+}
+
+#profile-bubble a:hover .icon-label {
+	text-decoration: underline;
+}
+
+#profile-bubble .username {
+	color: #aaa;
+	font-size: 11px;
+	display: block;
+	margin-left: 26px;
 }
 
 #profile-bubble ul {
@@ -263,6 +292,109 @@ form textarea {
 	list-style: none;
 }
 
-#profile-bubble ul li span.username {
-	float: right;
+
+/*********** Ident Icons ***********/
+
+.icon {
+	width: 16px;
+	height: 16px;
+	display: inline-block;
+	float: left;
+	background-color: white;
+	border-radius: 2px;
+	margin-top: 2px;
+	margin-right: 10px;
+	background: #ffffff url(chrome-extension://__MSG_@@extension_id__/images/icons.png) no-repeat top left;
+	border-radius: 3px;
 }
+	
+.icon-12secondstv { background-position: 0 0; } 
+.icon-43people { background-position: 0 -17px; } 
+.icon-43places { background-position: 0 -34px; } 
+.icon-43things { background-position: 0 -51px; } 
+.icon-backnetwork { background-position: 0 -68px; } 
+.icon-backtype { background-position: 0 -85px; } 
+.icon-barcampbrighton3 { background-position: 0 -102px; } 
+.icon-barcamplondon5 { background-position: 0 -119px; } 
+.icon-blipfm { background-position: 0 -136px; } 
+.icon-blippr { background-position: 0 -153px; } 
+.icon-bliptv { background-position: 0 -170px; } 
+.icon-blogger { background-position: 0 -187px; } 
+.icon-blogspot { background-position: 0 -204px; } 
+.icon-brightkite { background-position: 0 -221px; } 
+.icon-claimid { background-position: 0 -238px; } 
+.icon-cliqset { background-position: 0 -255px; } 
+.icon-cocomment { background-position: 0 -272px; } 
+.icon-corkd { background-position: 0 -289px; } 
+.icon-dconstruct08 { background-position: 0 -306px; } 
+.icon-delicious { background-position: 0 -323px; } 
+.icon-digg { background-position: 0 -340px; } 
+.icon-disqus { background-position: 0 -357px; } 
+.icon-djangopeople { background-position: 0 -374px; } 
+.icon-dopplr { background-position: 0 -391px; } 
+.icon-edenbee { background-position: 0 -408px; } 
+.icon-emberapp { background-position: 0 -425px; } 
+.icon-facebook { background-position: 0 -442px; } 
+.icon-ffffound { background-position: 0 -459px; } 
+.icon-flickr { background-position: 0 -476px; } 
+.icon-fotb08 { background-position: 0 -493px; } 
+.icon-fotolog { background-position: 0 -510px; } 
+.icon-friendfeed { background-position: 0 -527px; } 
+.icon-getsatisfaction { background-position: 0 -544px; } 
+.icon-github { background-position: 0 -561px; } 
+.icon-google { background-position: 0 -578px; } 
+.icon-googlereader { background-position: 0 -595px; } 
+.icon-hi5 { background-position: 0 -612px; } 
+.icon-huffduffer { background-position: 0 -629px; } 
+.icon-identica { background-position: 0 -646px; } 
+.icon-jaiku { background-position: 0 -663px; } 
+.icon-joost { background-position: 0 -680px; } 
+.icon-jpg { background-position: 0 -697px; } 
+.icon-krop { background-position: 0 -714px; } 
+.icon-lastfm { background-position: 0 -731px; } 
+.icon-linkedin { background-position: 0 -748px; } 
+.icon-livejournal { background-position: 0 -765px; } 
+.icon-madgexlab { background-position: 0 -782px; } 
+.icon-mashed08 { background-position: 0 -799px; } 
+.icon-meetup { background-position: 0 -816px; } 
+.icon-microformatsorg { background-position: 0 -833px; } 
+.icon-mybloglog { background-position: 0 -850px; } 
+.icon-mynameise { background-position: 0 -867px; } 
+.icon-myopenid { background-position: 0 -884px; } 
+.icon-myspace { background-position: 0 -901px; } 
+.icon-mytvshows { background-position: 0 -918px; } 
+.icon-netvibes { background-position: 0 -935px; } 
+.icon-newsvine { background-position: 0 -952px; } 
+.icon-odeo { background-position: 0 -969px; } 
+.icon-orkut { background-position: 0 -986px; } 
+.icon-picasa { background-position: 0 -1003px; } 
+.icon-plaxo { background-position: 0 -1020px; } 
+.icon-plazes { background-position: 0 -1037px; } 
+.icon-plurk { background-position: 0 -1054px; } 
+.icon-pownce { background-position: 0 -1071px; } 
+.icon-profilactic { background-position: 0 -1088px; } 
+.icon-readernaut { background-position: 0 -1105px; } 
+.icon-seesmic { background-position: 0 -1122px; } 
+.icon-slideshare { background-position: 0 -1139px; } 
+.icon-smugmug { background-position: 0 -1156px; } 
+.icon-soup { background-position: 0 -1173px; } 
+.icon-stumbleupon { background-position: 0 -1190px; } 
+.icon-technorati { background-position: 0 -1207px; } 
+.icon-threadless { background-position: 0 -1224px; } 
+.icon-timespeople { background-position: 0 -1241px; } 
+.icon-tumblr { background-position: 0 -1258px; } 
+.icon-twitpic { background-position: 0 -1275px; } 
+.icon-twitter { background-position: 0 -1292px; } 
+.icon-upcoming { background-position: 0 -1309px; } 
+.icon-ustream { background-position: 0 -1326px; } 
+.icon-viddler { background-position: 0 -1343px; } 
+.icon-vimeo { background-position: 0 -1360px; } 
+.icon-vox { background-position: 0 -1377px; } 
+.icon-website { background-position: 0 -1394px; } 
+.icon-windowslive { background-position: 0 -1411px; } 
+.icon-wordpress { background-position: 0 -1428px; } 
+.icon-xing { background-position: 0 -1445px; } 
+.icon-yahoo { background-position: 0 -1462px; } 
+.icon-yelp { background-position: 0 -1479px; } 
+.icon-yiid { background-position: 0 -1496px; } 
+.icon-youtube { background-position: 0 -1513px; }

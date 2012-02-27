@@ -34,7 +34,7 @@ var hn = {
 	
 	createProfileBubble: function(){
 	
-		$('body').append('<div id="profile-bubble" />');
+		$('body').append('<div id="profile-bubble"><em></em><div class="profile"></div></div>');
 	},
 	
 	createFilterMenu: function(){
@@ -130,27 +130,28 @@ var hn = {
 	renderProfileBubble: function(identities){
 		
 		// reset bubble
-		$('#profile-bubble').empty();
+		var $profile = $('#profile-bubble .profile');
+		$profile.empty();
 		
 		if (identities && identities.length > 0){
-			var ul = $('<ul class="profile-list"></ul>').appendTo('#profile-bubble');
+			var ul = $('<ul class="profile-list"></ul>').appendTo($profile);
 
 			for (var x = 0; x < identities.length; x++) {
 				if (identities[x].name != '') {
-					$('<li><a href="' + identities[x].profileUrl  + '"><div class="icon ' + identities[x].spriteClass +  '"></div> <span class="icon-label">' + identities[x].name + '</span></a>&nbsp;<span class="username">(' + identities[x].username + ')</span></li>').appendTo(ul);   
+					$('<li><a href="' + identities[x].profileUrl  + '"><div class="icon ' + identities[x].spriteClass +  '"></div> <span class="icon-label">' + identities[x].name + '</span><span class="username">' + identities[x].username + '</span></a></li>').appendTo(ul);   
 				} else {
 					$('<li><a href="' + identities[x].profileUrl  + '"><div class="icon ' + identities[x].spriteClass +  '"></div> <span class="icon-label">' + identities[x].domain + '</span></a></li>').appendTo(ul);
 				}
 			}
 		} else if (identities === false) {
-			$('#profile-bubble').html('Nothing found :(');
+			$profile.html('Nothing found :(');
 		} else {
-			$('#profile-bubble').html('Loading...');
+			$profile.html('Loading...');
 		}
 		
 		// position correctly
 		var left = hn.identelem.offset().left + (hn.identelem.width()/2);
-		var width = $('#profile-bubble').width()/2;
+		var width = $('#profile-bubble').outerWidth()/2;
 		
 		$('#profile-bubble').css({
 			display: 'block',
