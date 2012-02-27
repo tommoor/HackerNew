@@ -33,6 +33,7 @@ textarea {
   font-size: 13px;
   font-weight: normal;
   line-height: 18px;
+  height: auto !important;
 }
 input,
 button,

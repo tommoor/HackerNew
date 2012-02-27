@@ -155,9 +155,9 @@ var hn = {
 
 			for (var x = 0; x < identities.length; x++) {
 				if (identities[x].name != '') {
-					$('<li><a href="' + identities[x].profileUrl  + '"><div class="icon ' + identities[x].spriteClass +  '"></div> <span class="icon-label">' + identities[x].name + '</span><span class="username">' + identities[x].username + '</span></a></li>').appendTo(ul);   
+					$('<li><a href="' + identities[x].profileUrl  + '" target="_blank"><div class="icon ' + identities[x].spriteClass +  '"></div> <span class="icon-label">' + identities[x].name + '</span><span class="username">' + identities[x].username + '</span></a></li>').appendTo(ul);   
 				} else {
-					$('<li><a href="' + identities[x].profileUrl  + '"><div class="icon ' + identities[x].spriteClass +  '"></div> <span class="icon-label">' + identities[x].domain + '</span></a></li>').appendTo(ul);
+					$('<li><a href="' + identities[x].profileUrl  + '" target="_blank"><div class="icon ' + identities[x].spriteClass +  '"></div> <span class="icon-label">' + identities[x].domain + '</span></a></li>').appendTo(ul);
 				}
 			}
 		} else if (identities === false) {

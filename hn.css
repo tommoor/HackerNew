@@ -19,10 +19,6 @@ table tr td table tr {
 	height: auto !important;
 }
 
-img {	
-	display: none;
-}
-
 .comhead {
 	display: block;
 }
@@ -33,6 +29,10 @@ img {
 	padding-left: 25px;
 	padding-bottom: 10px;
 	margin-top: 6px;
+}
+
+.pagetop img {
+	display: none;
 }
 
 .pagetop a {
@@ -119,6 +119,10 @@ center > table > tbody > tr:first-child > td:first-child > table {
 	width: 85%;
 }
 
+center > table > tbody > tr:first-child > td:first-child > table img {
+	display: none;
+}
+
 
 /*********** Filters *****************/
 
@@ -198,6 +202,10 @@ td tr td center a {
 	-webkit-transition: all 0.2s ease-in;
 }
 
+td tr td center a img {
+	display: none;
+}
+
 td tr:hover td center a {
 	opacity: 1;
 }
@@ -234,6 +242,10 @@ html.item table tr td table {
 	margin-left: 32px;
 }
 
+html.item table tr td table table {
+	margin-left: 0;
+}
+
 html.item table tr:first-child td table {
 	width: 100%;
 	margin-left: 0;
@@ -241,9 +253,15 @@ html.item table tr:first-child td table {
 
 form textarea {
 	width: 100%;
-	margin: 0 0 -10px 0;
 }
 
+.item form textarea {
+	margin: 0 0 -10px;
+}
+
+.item form {
+	margin: 0;
+}
 
 /*********** Profile Bubble ***********/
 
