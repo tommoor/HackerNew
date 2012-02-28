@@ -265,6 +265,7 @@ form textarea {
 
 /*********** Profile Bubble ***********/
 
+#quick-reply,
 #profile-bubble {
 	position: relative;
 	display: none;
@@ -275,6 +276,7 @@ form textarea {
 	width: 150px;
 }
 
+#quick-reply em,
 #profile-bubble em {
 	position: absolute;
 	top: -6px;
@@ -293,6 +295,7 @@ form textarea {
 	overflow: hidden;
 }
 
+#quick-reply .loading,
 #profile-bubble .loading {
 	min-height: 38px;
 	background: url(chrome-extension://__MSG_@@extension_id__/images/loading.gif) no-repeat center center;
@@ -313,6 +316,21 @@ form textarea {
 	padding: 0;
 	margin: 0;
 	list-style: none;
+}
+
+#quick-reply {
+	width: 300px;
+}
+
+#quick-reply textarea {
+	background: rgba(255,255,255,0.9);
+	color: #333;
+	border: 0px;
+}
+
+#quick-reply input[type=submit] {
+	margin: 0;
+	float: right;
 }
 
 

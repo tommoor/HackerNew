@@ -10,6 +10,7 @@ var hn = {
 		hn.getPage();
 		hn.styleElements();
 		hn.createProfileBubble();
+		hn.createQuickReply();
 		hn.createFilterMenu();
 		hn.parseStories();
 		hn.bindEvents();
@@ -35,6 +36,11 @@ var hn = {
 	createProfileBubble: function(){
 	
 		$('body').append('<div id="profile-bubble"><em></em><div class="profile"></div></div>');
+	},
+	
+	createQuickReply: function(){
+	
+		$('body').append('<div id="quick-reply"><em></em><div class="reply"></div></div>');
 	},
 	
 	createFilterMenu: function(){
@@ -72,8 +78,44 @@ var hn = {
 		});
 		
 		$('a[href^=user]').hoverIntent(hn.loadUserDetails, function(){});
-		$(document).click(hn.closeProfileBubble);
+		$('a[href^=reply]').click(hn.quickReply);
 		
+		$(document).click(hn.closeBubbles);
+	},
+	
+	quickReply: function(ev){
+		ev.preventDefault();
+		
+		var $point = $(this);
+		var $reply = $('#quick-reply .reply');
+		var url = $(this).attr('href') + ' form';
+		
+		// load reply page into quick reply container
+		$reply.empty();
+		$reply.addClass('loading');
+		$reply.load(url, function(){
+			
+			// so submit button receives twitter styling
+			$reply.find('input').addClass('btn');
+			
+			// remove spinner
+			$reply.removeClass('loading');
+			
+			// focus ready for reply ;)
+			$reply.find('textarea').focus();	
+		});
+		
+		// position correctly
+		var left = $point.offset().left + ($point.width()/2);
+		var width = $('#profile-bubble').outerWidth()/2;
+		
+		// position
+		$('#quick-reply').css({
+			display: 'block',
+			position: 'absolute',
+			top: $point.offset().top+20,
+			left: left-width
+		});
 	},
 	
 	loadUserDetails: function(){
@@ -180,13 +222,18 @@ var hn = {
 			position: 'absolute',
 			top: hn.identelem.offset().top+20,
 			left: left-width
-		})
+		});
 	},
 	
-	closeProfileBubble: function(ev){
+	closeBubbles: function(ev){
 	
 		if (!$(ev.target).parents('#profile-bubble').length && ev.target != $('#profile-bubble')[0]) {
 			$('#profile-bubble').fadeOut(200);
+		}
+		
+		var href = ev.target.getAttribute('href') || '';
+		if (!$(ev.target).parents('#quick-reply').length && ev.target != $('#quick-reply')[0] && !href.match(/^reply/)) {
+			$('#quick-reply').fadeOut(200);
 		}
 	},
 	
