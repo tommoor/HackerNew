@@ -96,7 +96,7 @@ var hn = {
 		    for (var i = 0; i < urlsWithIndices.length; i++) {
 			
 				// ensure urls are properly formed
-				if(!urlsWithIndices[i].url.match(/^http:\/\//gi)){
+				if(!urlsWithIndices[i].url.match(/^https?:\/\//gi)){
 					urlsWithIndices[i].url = 'http://' + urlsWithIndices[i].url;
 				}
 				
