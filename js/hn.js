@@ -71,7 +71,7 @@ var hn = {
 			}
 		});
 		
-		$('a[href^=user]').live('mouseover', hn.loadUserDetails);
+		$('a[href^=user]').hoverIntent(hn.loadUserDetails, function(){});
 		$(document).click(hn.closeProfileBubble);
 		
 	},
@@ -85,7 +85,10 @@ var hn = {
 		
 		// load user profile page into temporary container
 		$temp.load(url, function(){
-						
+			
+			// find this users karma value		
+			var karma = $temp.find("td:contains('karma')").next().text();
+			
 			// twitter's library is far and away the best for extracting urls
 			var urlsWithIndices = twttr.txt.extractUrlsWithIndices($temp.html());
 			var filtered = [];
@@ -105,33 +108,30 @@ var hn = {
 		
 			if (filtered.length) {
 				// clean list of profile urls :-)
-				hn.loadUserProfiles(filtered);
+				hn.loadUserProfiles(filtered, karma);
 			} else {
-				hn.renderProfileBubble(false);
+				hn.renderProfileBubble([], [], karma);
 			}
 		});
 	},
 	
-	loadUserProfiles: function(urls){
+	loadUserProfiles: function(urls, karma){
 		console.log('Found profile URLS: ' + urls.join(','));
 		
-		hn.renderProfileBubble([], urls);
-		
-		// stop loading previous profiles
-		// if (hn.identport) hn.identport.disconnect();
+		hn.renderProfileBubble([], urls, karma);
 		
 		var name = 'ident' + (new Date).getTime();
 		var port = chrome.extension.connect({name: name});
 		port.postMessage({urls: urls});
 		port.onMessage.addListener(function(identities){
-			hn.renderProfileBubble(identities, urls);
+			hn.renderProfileBubble(identities, urls, karma);
 		});
 		hn.identport = port;
 	},
 	
-	renderProfileBubble: function(identities, urls){
+	renderProfileBubble: function(identities, urls, karma){
 		
-		if (identities !== false) {
+		if (identities || urls || karma) {
 			
 			identities = identities || [];
 			urls = urls || [];
@@ -144,11 +144,18 @@ var hn = {
 					name: 'Website'
 				});
 			}
+			
+			identities.unshift({
+				profileUrl: '',
+				spriteClass: 'icon-karma',
+				username: 'Karma',
+				name: karma
+			});
 		}
 				
 		// reset bubble
 		var $profile = $('#profile-bubble .profile');
-		$profile.empty();
+		$profile.empty().removeClass('loading');
 		
 		if (identities && identities.length > 0){
 			var ul = $('<ul class="profile-list"></ul>').appendTo($profile);
@@ -160,10 +167,8 @@ var hn = {
 					$('<li><a href="' + identities[x].profileUrl  + '" target="_blank"><div class="icon ' + identities[x].spriteClass +  '"></div> <span class="icon-label">' + identities[x].domain + '</span></a></li>').appendTo(ul);
 				}
 			}
-		} else if (identities === false) {
-			$profile.html('Nothing found :(');
 		} else {
-			$profile.html('Loading...');
+			$profile.addClass('loading');
 		}
 		
 		// position correctly

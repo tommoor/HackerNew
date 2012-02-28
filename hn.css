@@ -278,7 +278,7 @@ form textarea {
 #profile-bubble em {
 	position: absolute;
 	top: -6px;
-	left: 75px;
+	left: 78px;
 	width: 0;
 	height: 0;
 	border-left: 6px solid transparent;
@@ -291,6 +291,11 @@ form textarea {
 	display: block;
 	padding: 5px 0;
 	overflow: hidden;
+}
+
+#profile-bubble .loading {
+	min-height: 38px;
+	background: url(chrome-extension://__MSG_@@extension_id__/images/loading.gif) no-repeat center center;
 }
 
 #profile-bubble a:hover .icon-label {
@@ -325,7 +330,8 @@ form textarea {
 	background: #ffffff url(chrome-extension://__MSG_@@extension_id__/images/icons.png) no-repeat top left;
 	border-radius: 3px;
 }
-	
+
+.icon-karma { background: url(chrome-extension://__MSG_@@extension_id__/images/star.png) no-repeat top left; } 
 .icon-12secondstv { background-position: 0 0; } 
 .icon-43people { background-position: 0 -17px; } 
 .icon-43places { background-position: 0 -34px; } 

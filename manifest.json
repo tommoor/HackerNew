@@ -9,6 +9,7 @@
 	      "css": ["forms.css", "hn.css"],
 	      "js": [
 			"js/libs/jquery-1.7.1.min.js",
+			"js/libs/jquery.hoverIntent.js",
 			"js/libs/twitter.text.js",
 			"js/hn.js"
 		  ]
