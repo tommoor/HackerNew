@@ -12,7 +12,7 @@ var hn = {
 		hn.createProfileBubble();
 		hn.createQuickReply();
 		hn.createFilterMenu();
-		hn.parseStories();
+		//hn.parseStories();
 		hn.bindEvents();
 	},
 	
@@ -30,7 +30,6 @@ var hn = {
 	styleElements: function(){
 	
 		$('input[type=submit]').addClass('btn');
-		$('.pagetop a[href^="/r"]').addClass('logout').text('').attr('title', 'Log Out');
 	},
 	
 	createProfileBubble: function(){
@@ -45,7 +44,7 @@ var hn = {
 	
 	createFilterMenu: function(){
 		//<input id="add-filter" placeholder="Filter stories containing..." type="text" />
-		$('.pagetop').last().append(' <a class="settings" title="Settings"></a> <ul class="current-filters"></ul>');
+		//$('.pagetop').last().append(' <a class="settings" title="Settings"></a> <ul class="current-filters"></ul>');
 		hn.refreshFilters();
 	},
 	
@@ -87,8 +86,12 @@ var hn = {
 		ev.preventDefault();
 		
 		var $point = $(this);
-		var $reply = $('#quick-reply .reply');
+		var $element = $('#quick-reply').clone();
+		var $reply = $('.reply', $element);
 		var url = $(this).attr('href') + ' form';
+		
+		$point.after($element);
+		$point.remove();
 		
 		// load reply page into quick reply container
 		$reply.empty();
@@ -103,18 +106,6 @@ var hn = {
 			
 			// focus ready for reply ;)
 			$reply.find('textarea').focus();	
-		});
-		
-		// position correctly
-		var left = $point.offset().left + ($point.width()/2);
-		var width = $('#profile-bubble').outerWidth()/2;
-		
-		// position
-		$('#quick-reply').css({
-			display: 'block',
-			position: 'absolute',
-			top: $point.offset().top+20,
-			left: left-width
 		});
 	},
 	
@@ -229,11 +220,6 @@ var hn = {
 	
 		if (!$(ev.target).parents('#profile-bubble').length && ev.target != $('#profile-bubble')[0]) {
 			$('#profile-bubble').fadeOut(200);
-		}
-		
-		var href = ev.target.getAttribute('href') || '';
-		if (!$(ev.target).parents('#quick-reply').length && ev.target != $('#quick-reply')[0] && !href.match(/^reply/)) {
-			$('#quick-reply').fadeOut(200);
 		}
 	},
 	

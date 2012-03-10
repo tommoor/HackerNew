@@ -1,15 +1,15 @@
 body {
-	background: #fdfdfd;
-	margin-top: 40px;
+	background: #f9f9f9;
+	margin: 0;
 }
 
 table td,	
 table {
-	background: transparent;
+	background: #fff;
 }
 
 /*********** Header Logo ***********/
-
+/*
 table tr td table tr td {
 	width: auto;
 	position: relative;
@@ -51,7 +51,7 @@ table tr td table tr {
 .topsel a:visited {
 	color: #222;
 }
-
+*/
 
 /*********** Points, Comments & Time **************/
 
@@ -108,7 +108,7 @@ td.title .meta li.highlight span {
 }
 
 /*********** Header Bar **************/
-
+/*
 center > table > tbody > tr:first-child > td:first-child > table {
 	background-image: -webkit-gradient( linear, left bottom, left top, color-stop(0.3, rgba(253, 253, 253, 0)), color-stop(0.6, #FDFDFD) );
 	position: fixed;
@@ -122,7 +122,7 @@ center > table > tbody > tr:first-child > td:first-child > table {
 center > table > tbody > tr:first-child > td:first-child > table img {
 	display: none;
 }
-
+*/
 
 /*********** Filters *****************/
 
@@ -164,6 +164,37 @@ a.logout {
 
 /*********** News Listings ***********/
 
+body > center > table {
+	margin: 0 -20px;
+	padding: 20px;
+}
+
+td.title {
+	padding: 10px 0 2px;
+}
+
+td.title a {
+	font-size: 20px;
+	letter-spacing: -1px;
+	color: #2279B2;
+}
+
+td.title a:visited {
+	color: #87C1E8;
+}
+
+td.title .comhead a {
+	color: #444;
+	font-size: 8pt;
+}
+
+td.title:first-child {
+	font-size: 20px;
+	color: #bbb;
+	min-width: 33px;
+}
+
+/*
 table tr td table {
 	width: 90%;
 }
@@ -175,15 +206,6 @@ table tr:first-child td table {
 
 td.title {
 	padding: 10px 2px;
-}
-
-td.title:first-child {
-	line-height: 1.2;
-	font-size: 20px;
-	position: relative;
-	left: 0;
-	color: #666;
-	opacity: 0.6;
 }
 
 td tr td center a {
@@ -215,41 +237,13 @@ td tr:hover td.title .meta li span {
 	opacity: 0.9;
 }
 
-td.title a {
-	font-size: 20px;
-	letter-spacing: -1px;
-	color: #3299BB;
-	text-shadow: 0 1px 0 #fff;
-}
-
-td.title a:visited {
-	color: #9AD2E4;
-}
-
-td.title .comhead a {
-	color: #444;
-	font-size: 8pt;
-}
-
 td.subtext {
 	display: none;
 }
+*/
 
 
 /*********** Story Page ***************/
-
-html.item table tr td table {
-	margin-left: 32px;
-}
-
-html.item table tr td table table {
-	margin-left: 0;
-}
-
-html.item table tr:first-child td table {
-	width: 100%;
-	margin-left: 0;
-}
 
 form textarea {
 	width: 100%;
@@ -263,9 +257,30 @@ form textarea {
 	margin: 0;
 }
 
+.item table tr td table tr td form:first-child textarea {
+	min-width: 600px;
+}
+
+
+/*********** Inline Replies ***********/
+
+#quick-reply {
+	width: 100%;
+}
+
+#quick-reply input[type=submit] {
+	margin-left: 0;
+}
+
+
+#quick-reply .loading {
+	min-height: 38px;
+	background: url(chrome-extension://__MSG_@@extension_id__/images/loading-light.gif) no-repeat center center;
+}
+
+
 /*********** Profile Bubble ***********/
 
-#quick-reply,
 #profile-bubble {
 	position: relative;
 	display: none;
@@ -276,7 +291,6 @@ form textarea {
 	width: 150px;
 }
 
-#quick-reply em,
 #profile-bubble em {
 	position: absolute;
 	top: -6px;
@@ -295,7 +309,6 @@ form textarea {
 	overflow: hidden;
 }
 
-#quick-reply .loading,
 #profile-bubble .loading {
 	min-height: 38px;
 	background: url(chrome-extension://__MSG_@@extension_id__/images/loading.gif) no-repeat center center;
@@ -316,21 +329,6 @@ form textarea {
 	padding: 0;
 	margin: 0;
 	list-style: none;
-}
-
-#quick-reply {
-	width: 300px;
-}
-
-#quick-reply textarea {
-	background: rgba(255,255,255,0.9);
-	color: #333;
-	border: 0px;
-}
-
-#quick-reply input[type=submit] {
-	margin: 0;
-	float: right;
 }
 
 

@@ -5,7 +5,7 @@
 	"background_page": "background.html",
 	"content_scripts": [
 	    {
-	      "matches": ["http://news.ycombinator.com/*"],
+	      "matches": ["http://news.ycombinator.com/*", "http://news.ycombinator.org/*"],
 	      "css": ["forms.css", "hn.css"],
 	      "js": [
 			"js/libs/jquery-1.7.1.min.js",
