@@ -11,6 +11,23 @@ Until that point simply clone the repo and simply load as an unpacked extension 
 Wrench Menu > Tools > Extensions > (Ensure Developer Mode is Checked) > Load Unpacked Extension > Choose Folder 
 
 
+## Features
+
+* Improved readability design
+* Quick inline replies
+* Quick profiles with social network info when hovering over usernames
+* Filtering of stories based on terms and phrases
+* Endless scrolling
+
+
+## Todo
+
+* Refactoring
+* Filtering of stories based on domain / username
+* Highlighting of stories based on terms / domain / username
+* Caching of quick profiles
+
+
 ## License
 
 HackerNew is released under the MIT license. It is simple and easy to understand and places almost no restrictions on what you can do with it.

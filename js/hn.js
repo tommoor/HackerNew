@@ -4,7 +4,9 @@ var hn = {
 	loaded: [],
 	identport: null,
 	identelem: null,
-
+	endless_loading: false,
+	endless_preload: 200,
+	
 	init: function(){
 	
 		hn.getPage();
@@ -84,6 +86,31 @@ var hn = {
 		$('a[href^=reply]').click(hn.quickReply);
 		
 		$(document).click(hn.closeBubbles);
+		$(document).scroll(hn.checkPageEnd);
+	},
+	
+	checkPageEnd: function(){
+		if (hn.endless_loading) return;
+		
+		if (window.scrollY > $(document).height()-window.innerHeight-hn.endless_preload) {
+			hn.endless_loading = true;
+			var $temp = $('<div/>');
+			var $more = $('td.title a[href^="/x"]').last().addClass('endless_loading');
+			var $morerow = $more.parent().parent();
+			var url = $more.attr('href');
+			
+			$temp.load(url, function(){	
+				// find the first news title and jump up two levels to get news table body
+				$morerow.after($temp.find('td.title:first-child').parent().parent().html());
+				$morerow.remove();
+				
+				hn.endless_loading = false;
+				hn.filterStories();
+				
+				// bind quick profiles
+				$('a[href^=user]').hoverIntent(hn.loadUserDetails, function(){});
+			});
+		}
 	},
 	
 	quickReply: function(ev){
@@ -153,7 +180,6 @@ var hn = {
 	},
 	
 	loadUserProfiles: function(urls, karma){
-		console.log('Found profile URLS: ' + urls.join(','));
 		
 		hn.renderProfileBubble([], urls, karma);
 		
@@ -293,11 +319,5 @@ var hn = {
 		}
 	}
 };
-
-(function($) {
-  $.fn.outerHTML = function() {
-    return $(this).clone().wrap('<div></div>').parent().html();
-  }
-})(jQuery);
 
 $(hn.init);
