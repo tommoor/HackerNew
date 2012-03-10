@@ -11,5 +11,5 @@ HackerNew is released under the MIT license. It is simple and easy to understand
 
 ## Credits 
 
-* Icons are provided by [Daniel Bruce](http://www.entypo.com/)
 * Uses jQuery hover intent plugin by [Brian Cherne](http://cherne.net/brian/resources/jquery.hoverIntent.html)
+* Form styling from [Twitter Bootstrap](https://github.com/twitter/bootstrap)
