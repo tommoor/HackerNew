@@ -14,6 +14,7 @@ var hn = {
 		hn.createProfileBubble();
 		hn.createQuickReply();
 		hn.createFilterMenu();
+		hn.augmentStories();
 		hn.bindEvents();
 	},
 	
@@ -82,6 +83,11 @@ var hn = {
 			}
 		});
 		
+		$('.add-filter').live('click', function(ev){
+			hn.addFilter($(this).data('filter'));
+			hn.refreshFilters();
+		});
+		
 		$('a[href^=user]').hoverIntent(hn.loadUserDetails, function(){});
 		$('a[href^=reply]').click(hn.quickReply);
 		
@@ -117,6 +123,9 @@ var hn = {
 		
 		// load next page 
 		$temp.load(url, function(){	
+			
+			// add extra options to stories before appending to DOM
+			hn.augmentStories($temp);
 			
 			// find the first news title and jump up two levels to get news table body
 			$morerow.after($temp.find('td.title:first-child').parent().parent().html());
@@ -270,6 +279,27 @@ var hn = {
 		if (!$(ev.target).parents('#profile-bubble').length && ev.target != $('#profile-bubble')[0]) {
 			$('#profile-bubble').fadeOut(200);
 		}
+	},
+	
+	augmentStories: function($context){
+		
+		if (!$context) {
+			var $context = $('body');
+		}
+		
+		$('td.title a', $context).each(function(){
+			var $title = $(this).parent();
+			var $details = $title.parent().next();
+			
+			// extract story info
+			var domain = $('.comhead', $title).text().replace(/\(|\)/g, '');
+			var username = $('a', $details).first().text();
+			
+			$(this).before('<div class="filter-menu"><span>&#215;</span> <div class="quick-filter"><em></em> <ul>'+
+				'<li><a data-filter="user:'+ username +'" class="add-filter">Filter user \''+ username +'\'</a></li>'+
+				'<li><a data-filter="site:'+ domain +'" class="add-filter">Filter&nbsp;'+ domain +'</a></li>'+
+			'</ul></div></div>');
+		});
 	},
 	
 	filterStories: function(){

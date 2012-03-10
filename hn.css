@@ -76,6 +76,8 @@ body > center > table {
 
 td.title {
 	padding: 10px 0 2px;
+	position: relative;
+	background: none;
 }
 
 td.title a {
@@ -99,6 +101,73 @@ td.title:first-child {
 	min-width: 33px;
 }
 
+
+/*********** Story Filter Menu **********/
+
+td.title .filter-menu {
+	position: absolute;
+	top: 8px;
+	right: 10px;
+}
+
+td.title .filter-menu span {
+	display: block;
+	width: 30px;
+	height: 30px;
+	font-size: 18px;
+	color: #fff;
+	text-align: center;
+	line-height: 30px;
+	-webkit-transition: all 0.2s ease-in-out;
+}
+
+td.title:hover .filter-menu span {
+	color: #999;
+}
+
+td.title .filter-menu ul {
+	list-style: none;
+	padding: 0;
+}
+
+td.title .filter-menu .quick-filter {
+	position: absolute;
+	left: -9000px;
+	background: rgba(0,0,0,0.9);
+	box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+	z-index: 100;
+	width: 150px;
+	top: 30px;
+	padding: 0 10px;
+}
+
+td.title .filter-menu:hover .quick-filter {
+	left: -68px;
+}
+
+td.title .filter-menu .quick-filter a {
+	font-size: 12px;
+	color: #fff;
+	display: block;
+	padding: 5px 0;
+	letter-spacing: 0;
+	cursor: pointer;
+}
+
+td.title .filter-menu .quick-filter a:hover {
+	text-decoration: underline;
+}
+
+td.title .filter-menu .quick-filter em {
+	position: absolute;
+	top: -6px;
+	left: 78px;
+	width: 0;
+	height: 0;
+	border-left: 6px solid transparent;
+	border-right: 6px solid transparent;
+	border-bottom: 6px solid rgba(0,0,0,0.9);
+}
 
 /*********** Endless Loading **********/
 
