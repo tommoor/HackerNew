@@ -12,7 +12,6 @@ var hn = {
 		hn.createProfileBubble();
 		hn.createQuickReply();
 		hn.createFilterMenu();
-		//hn.parseStories();
 		hn.bindEvents();
 	},
 	
@@ -43,8 +42,8 @@ var hn = {
 	},
 	
 	createFilterMenu: function(){
-		//<input id="add-filter" placeholder="Filter stories containing..." type="text" />
-		//$('.pagetop').last().append(' <a class="settings" title="Settings"></a> <ul class="current-filters"></ul>');
+		$('.pagetop').last().prepend('<a id="menu-filters">filters</a> | ');
+		$('.pagetop').parents('tr').first().after('<tr><td colspan="3" id="filter-wrapper"><em></em><input type="text" id="add-filter" placeholder="Add a filter term or phrase" /><ul id="current-filters"></ul></td></tr>');
 		hn.refreshFilters();
 	},
 	
@@ -54,14 +53,19 @@ var hn = {
 		var $filters = '';
 		
 		for(var i=0, l=filters.length; i < l; i++){
-			$filters += '<li><a class="filter remove" data-filter="'+filters[i]+'">'+filters[i]+'</a></li>'
+			$filters += '<li><a class="filter remove" data-filter="'+filters[i]+'" title="Remove filter">'+filters[i]+'</a></li>'
 		}
 	
-		$('.current-filters').html($filters);
+		$('#current-filters').html($filters);
 		hn.filterStories();
 	},
 	
 	bindEvents: function(){
+		
+		$('#menu-filters').live('click', function(){
+			$('#filter-wrapper').fadeToggle();
+		});
+		
 		$('a.filter.remove').live('click', function(){
 			hn.removeFilter($(this).data('filter'));
 			hn.filterStories();
@@ -227,43 +231,23 @@ var hn = {
 	
 		$('td.title a').each(function(){
 			var $row = $(this).parent().parent();
+			var $details = $row.next();
+			var $divider = $details.next();
+			
 			var title = $(this).text();
 		
 			// check personal filters
 			if (hn.checkFiltered(title)) {
 				$row.hide();
+				$details.hide();
+				$divider.hide();
+				
 				return;
 			} else {
 				$row.fadeIn();
+				$details.fadeIn();
+				$divider.fadeIn();
 			}
-		});
-	},
-	
-	parseStories: function(){
-		
-		$('td.title a:first-child').each(function(){
-			var $title = $(this).parent();
-			var $row = $title.parent();
-			var $subtext = $row.next().find('.subtext');
-			var domain = $('.comhead', $row).text().replace(/(\(|\))/g, '');
-			var $score = $('span', $subtext).clone();
-			var $comments = $('a[href^=item]', $subtext).clone();
-			var $user = $('a[href^=user]', $subtext).clone();
-			var time = $.trim($subtext.contents().filter(function(){ return(this.nodeType == 3); }).text().replace(/(by|\|)/gi, ''));
-			
-			// formatting	
-			$score = ($score.outerHTML() || '').replace(/points?/i, '');
-			$comments = ($comments.outerHTML() || '').replace(/comments?/i, '');
-
-			// changes
-			$('.comhead', $row).text(domain + ' by ').append($user);
-			
-			// append new meta
-			$title.append('<ul class="meta">'+
-			'<li class="comments">'+$comments+'</li>'+
-			'<li class="points">'+$score+'</li>'+
-			'<li class="time"><span>'+time+'</span></li>'+
-			'</ul>');
 		});
 	},
 	
