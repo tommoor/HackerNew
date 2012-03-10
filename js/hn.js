@@ -85,32 +85,51 @@ var hn = {
 		$('a[href^=user]').hoverIntent(hn.loadUserDetails, function(){});
 		$('a[href^=reply]').click(hn.quickReply);
 		
-		$(document).click(hn.closeBubbles);
+		$(document).click(hn.closeQuickReply);
 		$(document).scroll(hn.checkPageEnd);
 	},
 	
 	checkPageEnd: function(){
+		
+		// dont do anything if we're already loading the next page
 		if (hn.endless_loading) return;
 		
+		// check if we're near the end
 		if (window.scrollY > $(document).height()-window.innerHeight-hn.endless_preload) {
-			hn.endless_loading = true;
-			var $temp = $('<div/>');
-			var $more = $('td.title a[href^="/x"]').last().addClass('endless_loading');
-			var $morerow = $more.parent().parent();
-			var url = $more.attr('href');
 			
-			$temp.load(url, function(){	
-				// find the first news title and jump up two levels to get news table body
-				$morerow.after($temp.find('td.title:first-child').parent().parent().html());
-				$morerow.remove();
-				
-				hn.endless_loading = false;
-				hn.filterStories();
-				
-				// bind quick profiles
-				$('a[href^=user]').hoverIntent(hn.loadUserDetails, function(){});
-			});
+			// awesome, lets start loading
+			hn.loadNextPage();
 		}
+	},
+	
+	loadNextPage: function(){
+	
+		hn.endless_loading = true;
+		
+		var $temp = $('<div/>');
+		
+		// find the 'More' link and add a loading class
+		var $more = $('td.title a[href^="/x"]').last().addClass('endless_loading');
+		var $morerow = $more.parent().parent();
+		
+		// extract the URL for the next page
+		var url = $more.attr('href');
+		
+		// load next page 
+		$temp.load(url, function(){	
+			
+			// find the first news title and jump up two levels to get news table body
+			$morerow.after($temp.find('td.title:first-child').parent().parent().html());
+			$morerow.remove();
+			
+			hn.endless_loading = false;
+			
+			// refilter news stories
+			hn.filterStories();
+			
+			// bind quick profiles
+			$('a[href^=user]').hoverIntent(hn.loadUserDetails, function(){});
+		});
 	},
 	
 	quickReply: function(ev){
@@ -246,7 +265,7 @@ var hn = {
 		});
 	},
 	
-	closeBubbles: function(ev){
+	closeQuickReply: function(ev){
 	
 		if (!$(ev.target).parents('#profile-bubble').length && ev.target != $('#profile-bubble')[0]) {
 			$('#profile-bubble').fadeOut(200);
@@ -256,14 +275,18 @@ var hn = {
 	filterStories: function(){
 	
 		$('td.title a').each(function(){
-			var $row = $(this).parent().parent();
+			var $title = $(this).parent();
+			var $row = $title.parent();
 			var $details = $row.next();
 			var $divider = $details.next();
 			
+			// extract story info
+			var domain = $('.comhead', $title).text().replace(/\(|\)/g, '');
 			var title = $(this).text();
-		
+			var username = $('a', $details).first().text();
+			
 			// check personal filters
-			if (hn.checkFiltered(title)) {
+			if (hn.checkFiltered(title, domain, username)) {
 				$row.hide();
 				$details.hide();
 				$divider.hide();
@@ -277,11 +300,29 @@ var hn = {
 		});
 	},
 	
-	checkFiltered: function(title){
+	checkFiltered: function(title, domain, username){
 		
 		var filters = hn.getFilters();
+		var filter;
 		
 		for(var i=0, l=filters.length; i < l; i++){
+			
+			// filter domain
+			if (filters[i].match(/^site:/)) {
+				
+				// domain name can be partial match
+				var re = new RegExp(filters[i].replace(/site:/i, ''), 'gi');
+				if (domain.match(re)) return true;
+				
+			// filter user	
+			} else if (filters[i].match(/^user:/)) {
+				
+				// username must be exact match
+				var re = new RegExp('^' + filters[i].replace(/user:/i, '') + '$', 'gi');
+				if (username.match(re)) return true;
+			}
+			
+			// filter story title
 			var re = new RegExp(filters[i],"gi");
 			if (title.match(re)) return true;
 		}
