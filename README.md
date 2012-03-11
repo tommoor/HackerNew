@@ -19,6 +19,7 @@ Wrench Menu > Tools > Extensions > (Ensure Developer Mode is Checked) > Load Unp
 * Filtering of stories based on terms and phrases / domain or username
 * Endless scrolling
 * Collapsible comment threads
+* Social sharing for Twitter, Facebook, Google+, Buffer
 
 
 ## Todo
