@@ -5,10 +5,9 @@ A chrome extension to add requested and missing functionality to hacker news inc
 
 ## Usage
 
-This will be released on the Chrome Webstore as an installable plugin when it nears a state of completion. 
-Until that point simply clone the repo and simply load as an unpacked extension Chrome:
+Install from the Chrome Webstore to receive automatic updates:
 
-Wrench Menu > Tools > Extensions > (Ensure Developer Mode is Checked) > Load Unpacked Extension > Choose Folder 
+https://chrome.google.com/webstore/detail/lgoghlndihpmbbgmbpjohilcphbfhddd
 
 
 ## Features
