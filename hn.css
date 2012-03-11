@@ -9,6 +9,19 @@ table {
 }
 
 
+/*********** Header ******************/
+
+.pagetop b {
+	padding-right: 10px;
+}
+
+.pagetop .topsel a,
+.pagetop .topsel a:link, 
+.pagetop .topsel a:visited {
+	color: #000;
+	font-weight: bold;
+}
+
 /*********** Filters *****************/
 
 #menu-filters {
@@ -128,6 +141,7 @@ td.title:hover .filter-menu span {
 td.title .filter-menu ul {
 	list-style: none;
 	padding: 0;
+	margin: 0;
 }
 
 td.title .filter-menu .quick-filter {
@@ -136,26 +150,27 @@ td.title .filter-menu .quick-filter {
 	background: rgba(0,0,0,0.9);
 	box-shadow: 0 2px 10px rgba(0,0,0,0.1);
 	z-index: 100;
-	width: 150px;
+	width: 170px;
 	top: 30px;
-	padding: 0 10px;
 }
 
 td.title .filter-menu:hover .quick-filter {
 	left: -68px;
 }
 
-td.title .filter-menu .quick-filter a {
+td.title .filter-menu .quick-filter li a {
 	font-size: 12px;
 	color: #fff;
 	display: block;
-	padding: 5px 0;
+	padding: 10px;
 	letter-spacing: 0;
 	cursor: pointer;
+	border-bottom: 1px solid #222;
 }
 
-td.title .filter-menu .quick-filter a:hover {
-	text-decoration: underline;
+td.title .filter-menu .quick-filter li:hover a {
+	background: #BF3838;
+	border-bottom: 1px solid #6F2020;
 }
 
 td.title .filter-menu .quick-filter em {
@@ -186,6 +201,10 @@ form textarea {
 	width: 100%;
 }
 
+.item .filter-menu {
+	display: none;
+}
+
 .item form textarea {
 	margin: 0 0 -10px;
 }
@@ -198,12 +217,39 @@ form textarea {
 	min-width: 600px;
 }
 
+font u a:link,
 .comment a:link {
 	color: #2279B2;
 }
 
+font u a:visited,
 .comment a:visited {
 	color: #87C1E8;
+}
+
+a.toggle-replies {
+	float: right;
+	cursor: pointer;
+	opacity: 0;
+	-webkit-transition: all 0.2s ease-in-out;
+}
+
+a.toggle-replies:hover {
+	text-decoration: underline;
+}
+
+td.default:hover a.toggle-replies {
+	opacity: 1;
+}
+
+a.toggle-replies.collapsed {
+	opacity: 1;
+	
+	padding: 3px 6px;
+	margin: -5px;
+	background: #828282;
+	color: white;
+	border-radius: 3px;
 }
 
 

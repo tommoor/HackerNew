@@ -23,6 +23,7 @@ var hn = {
 		switch(window.location.pathname) {
 			case '/item':
 				$('html').addClass('item');
+				hn.augmentComments();
 				break;
 			default:
 				$('html').addClass('news');
@@ -88,6 +89,7 @@ var hn = {
 			hn.refreshFilters();
 		});
 		
+		$('.toggle-replies').click(hn.toggleReplies);
 		$('a[href^=user]').hoverIntent(hn.loadUserDetails, function(){});
 		$('a[href^=reply]').click(hn.quickReply);
 		
@@ -166,6 +168,44 @@ var hn = {
 			// focus ready for reply ;)
 			$reply.find('textarea').focus();	
 		});
+	},
+	
+	toggleReplies: function(ev){
+
+		var $button = $(this);
+		
+		if ($button.hasClass('collapsed')) {
+			var uniq = $button.data('uniq');
+			$('.hidden-reply-' + uniq).fadeIn().removeClass();
+			$button.text('collapse')
+			       .removeClass('collapsed');
+			return;
+		}
+		
+		var count = 0;
+		var parent = $button.parents('td.default').offset();
+		var uniq = (new Date()).getTime();
+		
+		$('td.default').each(function(){
+			var offset = $(this).offset();
+			
+			if (offset.top > parent.top) {
+				if (offset.left > parent.left) {
+					count++;
+					
+					// find parent tr, several levels down
+					$(this).parent().parent().parent().parent().parent().fadeOut().addClass('hidden-reply-' + uniq);
+					return true;
+				}
+				
+				// gone too far
+				return false;
+			}
+		});
+		
+		$button.text('show ' + count + ' replies')
+		       .addClass('collapsed')
+		       .data('uniq', uniq);
 	},
 	
 	loadUserDetails: function(){
@@ -299,6 +339,15 @@ var hn = {
 				'<li><a data-filter="user:'+ username +'" class="add-filter">Filter user \''+ username +'\'</a></li>'+
 				'<li><a data-filter="site:'+ domain +'" class="add-filter">Filter&nbsp;'+ domain +'</a></li>'+
 			'</ul></div></div>');
+		});
+	},
+	
+	augmentComments: function(){
+		$('span.comment').each(function(){
+			var $wrapper = $(this).parent();
+			var $meta = $wrapper.find('span.comhead');
+			
+			$meta.append('<a class="toggle-replies">collapse<a>');
 		});
 	},
 	
