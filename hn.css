@@ -115,6 +115,26 @@ td.title:first-child {
 }
 
 
+/*********** Story Share Menu ***********/
+
+.share-story {
+	cursor: pointer;
+}
+
+.share-story:hover {
+	text-decoration: underline;
+}
+
+.sharing-options {
+	display: none;
+	padding: 10px 0;
+}
+
+.sharing-options iframe {
+	margin-right: 10px;
+}
+
+
 /*********** Story Filter Menu **********/
 
 td.title .filter-menu {

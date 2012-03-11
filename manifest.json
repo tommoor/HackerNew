@@ -1,7 +1,7 @@
 {
 	"name": "HackerNew",
 	"version": "0.1",
-	"description": "Making hacker news more useful.",
+	"description": "Making Hacker News quicker and more useful.",
 	"background_page": "background.html",
 	"icons": {
 		"48": "images/icon-48.png",
@@ -9,8 +9,12 @@
 	},
 	"content_scripts": [
 	    {
-	      "matches": ["http://news.ycombinator.com/*", "http://news.ycombinator.org/*"],
-	      "css": ["forms.css", "hn.css"],
+	      "matches": [
+			"http://news.ycombinator.com/*", 
+			"http://news.ycombinator.org/*"],
+	      "css": [
+			"forms.css", 
+			"hn.css"],
 	      "js": [
 			"js/libs/jquery-1.7.1.min.js",
 			"js/libs/jquery.hoverIntent.js",

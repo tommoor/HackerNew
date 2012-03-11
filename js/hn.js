@@ -90,11 +90,37 @@ var hn = {
 		});
 		
 		$('.toggle-replies').click(hn.toggleReplies);
-		$('a[href^=user]').hoverIntent(hn.loadUserDetails, function(){});
+		
+		// slice removes the first user, which is always ourselves
+		$('a[href^=user]').slice(1).hoverIntent(hn.loadUserDetails, function(){});
 		$('a[href^=reply]').click(hn.quickReply);
 		
 		$(document).click(hn.closeQuickReply);
 		$(document).scroll(hn.checkPageEnd);
+	},
+	
+	shareStory: function(element, url, title){
+		var $point = $(element);
+		url = encodeURIComponent(url);
+		
+		// remove sharing options
+		if ($point.hasClass('sharing')) {
+			$point.next().remove();
+			$point.text('share')
+			      .removeClass('sharing');
+			return;
+		}
+		
+		// add sharing options
+		$point.addClass('sharing');
+		$point.after('<div class="sharing-options"><iframe src="//platform.twitter.com/widgets/tweet_button.html?url='+url+'&text='+title+'&count=vertical" style="width:55px; height:62px; border:none;" scrolling="no" frameborder="0" ></iframe>'+
+		'<iframe src="//www.facebook.com/plugins/like.php?href='+url+'&send=false&layout=box_count&width=55&show_faces=false&action=like&colorscheme=light&height=62" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:55px; height:62px;" allowTransparency="true"></iframe>'+
+		'<iframe src="http://widgets.bufferapp.com/button/?url='+url+'&text='+title+'&count=vertical" style="width: 55px; height: 62px; border:none;" scrolling="no" frameborder="0"></iframe>'+
+		'<div class="g-plusone" data-size="tall" data-href="'+url+'"></div><script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script></div>');
+	
+		$point.text('actually, nah')
+		      .next()
+		      .fadeIn();
 	},
 	
 	checkPageEnd: function(){
@@ -328,17 +354,27 @@ var hn = {
 		}
 		
 		$('td.title a', $context).each(function(){
-			var $title = $(this).parent();
-			var $details = $title.parent().next();
+			
+			var $link = $(this);
+			var $title = $link.parent();
+			var $details = $title.parent().next().find('td.subtext');
 			
 			// extract story info
 			var domain = $('.comhead', $title).text().replace(/\(|\)/g, '');
 			var username = $('a', $details).first().text();
 			
+			// add filtering options
 			$(this).before('<div class="filter-menu"><span>&#215;</span> <div class="quick-filter"><em></em> <ul>'+
 				'<li><a data-filter="user:'+ username +'" class="add-filter">Filter user \''+ username +'\'</a></li>'+
 				'<li><a data-filter="site:'+ domain +'" class="add-filter">Filter&nbsp;'+ domain +'</a></li>'+
 			'</ul></div></div>');
+			
+			// add sharing options
+			$details.append(' | <a class="share-story">share</a>');
+			
+			$('.share-story', $details).click(function(){
+				hn.shareStory(this, $link.attr('href'), $link.text());
+			});
 		});
 	},
 	
