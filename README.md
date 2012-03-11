@@ -16,14 +16,13 @@ Wrench Menu > Tools > Extensions > (Ensure Developer Mode is Checked) > Load Unp
 * Improved readability design
 * Quick inline replies
 * Quick profiles with social network info when hovering over usernames
-* Filtering of stories based on terms and phrases
+* Filtering of stories based on terms and phrases / domain or username
 * Endless scrolling
 
 
 ## Todo
 
 * Refactoring
-* Filtering of stories based on domain / username
 * Highlighting of stories based on terms / domain / username
 * Caching of quick profiles
 
