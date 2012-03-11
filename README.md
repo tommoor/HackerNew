@@ -18,6 +18,7 @@ Wrench Menu > Tools > Extensions > (Ensure Developer Mode is Checked) > Load Unp
 * Quick profiles with social network info when hovering over usernames
 * Filtering of stories based on terms and phrases / domain or username
 * Endless scrolling
+* Collapsable comment threads
 
 
 ## Todo
