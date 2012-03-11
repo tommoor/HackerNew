@@ -101,7 +101,7 @@ var hn = {
 	
 	shareStory: function(element, url, title){
 		var $point = $(element);
-		url = encodeURIComponent(url);
+		var url_encoded = encodeURIComponent(url);
 		
 		// remove sharing options
 		if ($point.hasClass('sharing')) {
@@ -113,10 +113,10 @@ var hn = {
 		
 		// add sharing options
 		$point.addClass('sharing');
-		$point.after('<div class="sharing-options"><iframe src="//platform.twitter.com/widgets/tweet_button.html?url='+url+'&text='+title+'&count=vertical" style="width:55px; height:62px; border:none;" scrolling="no" frameborder="0" ></iframe>'+
-		'<iframe src="//www.facebook.com/plugins/like.php?href='+url+'&send=false&layout=box_count&width=55&show_faces=false&action=like&colorscheme=light&height=62" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:55px; height:62px;" allowTransparency="true"></iframe>'+
-		'<iframe src="http://widgets.bufferapp.com/button/?url='+url+'&text='+title+'&count=vertical" style="width: 55px; height: 62px; border:none;" scrolling="no" frameborder="0"></iframe>'+
-		'<div class="g-plusone" data-size="tall" data-href="'+url+'"></div><script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script></div>');
+		$point.after('<div class="sharing-options"><iframe src="//platform.twitter.com/widgets/tweet_button.html?url='+url_encoded+'&text='+title+'&count=vertical" style="width:55px; height:62px; border:none;" scrolling="no" frameborder="0" ></iframe>'+
+		'<iframe src="//www.facebook.com/plugins/like.php?href='+url_encoded+'&send=false&layout=box_count&width=55&show_faces=false&action=like&colorscheme=light&height=62" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:55px; height:62px;" allowTransparency="true"></iframe>'+
+		'<iframe src="http://widgets.bufferapp.com/button/?url='+url_encoded+'&text='+title+'&count=vertical" style="width: 55px; height: 62px; border:none;" scrolling="no" frameborder="0"></iframe>'+
+		'<g:plusone size="tall" href="'+url+'"></g:plusone><script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script></div>');
 	
 		$point.text('actually, nah')
 		      .next()
