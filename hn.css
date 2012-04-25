@@ -99,6 +99,11 @@ td.title a {
 	color: #2279B2;
 }
 
+td.title a:hover {
+	color: #2991D6;
+}
+
+
 td.title a:visited {
 	color: #87C1E8;
 }
@@ -112,6 +117,25 @@ td.title:first-child {
 	font-size: 20px;
 	color: #bbb;
 	min-width: 33px;
+}
+
+td.subtext a:hover {
+	color: #444;
+}
+
+
+/*********** Vote Arrows ****************/
+
+tr>td>center>a {
+	padding: 4px;
+	vertical-align: bottom;
+	opacity: 0.8;
+	position: relative;
+	top: 3px;
+}
+
+tr>td>center>a:hover {
+	opacity: 1;
 }
 
 
@@ -140,7 +164,7 @@ td.title:first-child {
 td.title .filter-menu {
 	position: absolute;
 	top: 8px;
-	right: 10px;
+	right: 0;
 }
 
 td.title .filter-menu span {
@@ -148,14 +172,17 @@ td.title .filter-menu span {
 	width: 30px;
 	height: 30px;
 	font-size: 18px;
-	color: #fff;
+	color: rgba(255,255,255,0);
 	text-align: center;
 	line-height: 30px;
+	padding-right: 10px;
+	cursor: pointer;
 	-webkit-transition: all 0.2s ease-in-out;
 }
 
 td.title:hover .filter-menu span {
 	color: #999;
+	background: #fff;
 }
 
 td.title .filter-menu ul {

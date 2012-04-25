@@ -9,7 +9,7 @@ var hn = {
 	
 	init: function(){
 	
-		hn.getPage();
+		hn.setPage();
 		hn.styleElements();
 		hn.createProfileBubble();
 		hn.createQuickReply();
@@ -18,7 +18,7 @@ var hn = {
 		hn.bindEvents();
 	},
 	
-	getPage: function(){
+	setPage: function(){
 	
 		switch(window.location.pathname) {
 			case '/item':
@@ -151,12 +151,13 @@ var hn = {
 		
 		// load next page 
 		$temp.load(url, function(){	
+		
+			// find the first news title and jump up two levels to get news table body
+			$temp = $temp.find('td.title:first-child').parent().parent().html();
 			
 			// add extra options to stories before appending to DOM
 			hn.augmentStories($temp);
-			
-			// find the first news title and jump up two levels to get news table body
-			$morerow.after($temp.find('td.title:first-child').parent().parent().html());
+			$morerow.after($temp);
 			$morerow.remove();
 			
 			hn.endless_loading = false;
@@ -353,9 +354,9 @@ var hn = {
 			var $context = $('body');
 		}
 		
-		$('td.title a', $context).each(function(){
+		$('td.title', $context).each(function(){
 			
-			var $link = $(this);
+			var $link = $('a', this);
 			var $title = $link.parent();
 			var $details = $title.parent().next().find('td.subtext');
 			
@@ -364,15 +365,16 @@ var hn = {
 			var username = $('a', $details).first().text();
 			
 			// add filtering options
-			$(this).before('<div class="filter-menu"><span>&#215;</span> <div class="quick-filter"><em></em> <ul>'+
+			$link.before('<div class="filter-menu"><span>&#215;</span> <div class="quick-filter"><em></em> <ul>'+
 				'<li><a data-filter="user:'+ username +'" class="add-filter">Filter user \''+ username +'\'</a></li>'+
 				'<li><a data-filter="site:'+ domain +'" class="add-filter">Filter&nbsp;'+ domain +'</a></li>'+
 			'</ul></div></div>');
 			
 			// add sharing options
-			$details.append(' | <a class="share-story">share</a>');
+			$details.append(' | <a class="share-story" href="#">share</a>');
 			
-			$('.share-story', $details).click(function(){
+			$('.share-story', $details).click(function(ev){
+				ev.preventDefault();
 				hn.shareStory(this, $link.attr('href'), $link.text());
 			});
 		});
