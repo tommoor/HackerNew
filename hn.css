@@ -33,6 +33,15 @@ table {
 	display: none;
 }
 
+#filter-wrapper p.empty {
+	position: absolute;
+	top: 46px;
+	left: 20px;
+	line-height: 1.2;
+	text-shadow: 0 1px 0 #fff;
+	margin: 0;
+}
+
 #filter-wrapper input {
 	position: absolute;
 	top: 38px;
@@ -57,6 +66,7 @@ table {
 	padding: 20px 250px 10px 20px;	
 	background: #f5f5f5;
 	border-bottom: 3px solid #ddd;
+	min-height: 38px;
 }
 
 #current-filters li {

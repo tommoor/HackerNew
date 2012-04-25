@@ -47,7 +47,7 @@ var hn = {
 	
 	createFilterMenu: function(){
 		$('.pagetop').last().prepend('<a id="menu-filters">filters</a> | ');
-		$('.pagetop').parents('tr').first().after('<tr><td colspan="3" id="filter-wrapper"><em></em><input type="text" id="add-filter" placeholder="Add a filter term or phrase" /><ul id="current-filters"></ul></td></tr>');
+		$('.pagetop').parents('tr').first().after('<tr><td colspan="3" id="filter-wrapper"><em></em><input type="text" id="add-filter" placeholder="Add a filter term or phrase" /><p class="empty">Add a filter on the right to get started.</p><ul id="current-filters"></ul></td></tr>');
 		hn.refreshFilters();
 	},
 	
@@ -58,6 +58,13 @@ var hn = {
 		
 		for(var i=0, l=filters.length; i < l; i++){
 			$filters += '<li><a class="filter remove" data-filter="'+filters[i]+'" title="Remove filter">'+filters[i]+'</a></li>'
+		}
+		
+		// show placeholder message
+		if (l) {
+			$('#filter-wrapper .empty').hide();
+		} else {
+			$('#filter-wrapper .empty').show();
 		}
 	
 		$('#current-filters').html($filters);
@@ -73,7 +80,7 @@ var hn = {
 		$('a.filter.remove').live('click', function(){
 			hn.removeFilter($(this).data('filter'));
 			hn.filterStories();
-			$(this).parent().remove();
+			hn.refreshFilters();
 		});
 		
 		$('#add-filter').keyup(function(ev){
