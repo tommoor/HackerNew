@@ -46,7 +46,7 @@ var hn = {
 	},
 	
 	createFilterMenu: function(){
-		$('.pagetop').last().prepend('<a id="menu-filters">filters</a> | ');
+		$('.pagetop').last().prepend('<a id="menu-filters">filters <span class="count"></span></a> | ');
 		$('.pagetop').parents('tr').first().after('<tr><td colspan="3" id="filter-wrapper"><em></em><input type="text" id="add-filter" placeholder="Add a filter term or phrase" /><p class="empty">Add a filter on the right to get started.</p><ul id="current-filters"></ul></td></tr>');
 		hn.refreshFilters();
 	},
@@ -398,6 +398,8 @@ var hn = {
 	
 	filterStories: function(){
 	
+		var count = 0;
+		
 		$('td.title a').each(function(){
 			var $title = $(this).parent();
 			var $row = $title.parent();
@@ -414,6 +416,7 @@ var hn = {
 				$row.hide();
 				$details.hide();
 				$divider.hide();
+				count++;
 				
 				return;
 			} else {
@@ -422,6 +425,13 @@ var hn = {
 				$divider.fadeIn();
 			}
 		});
+		
+		// show number of filtered stories in header
+		if (count > 0) {
+			$('#menu-filters .count').text('('+count+')');
+		} else {
+			$('#menu-filters .count').text('');
+		}
 	},
 	
 	checkFiltered: function(title, domain, username){
