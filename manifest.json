@@ -12,7 +12,8 @@
 	      "matches": [
 			"http://news.ycombinator.com/*", 
 			"http://news.ycombinator.org/*", 
-			"http://hackerne.ws/*"],
+			"http://hackerne.ws/*",
+			"https://news.ycombinator.com/*"],
 	      "css": [
 			"forms.css", 
 			"hn.css"],
