@@ -1,6 +1,6 @@
 {
 	"name": "HackerNew",
-	"version": "0.1",
+	"version": "0.2",
 	"description": "Making Hacker News quicker and more useful.",
 	"background_page": "background.html",
 	"icons": {
@@ -11,7 +11,8 @@
 	    {
 	      "matches": [
 			"http://news.ycombinator.com/*", 
-			"http://news.ycombinator.org/*"],
+			"http://news.ycombinator.org/*", 
+			"http://hackerne.ws/*"],
 	      "css": [
 			"forms.css", 
 			"hn.css"],
