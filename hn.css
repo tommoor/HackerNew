@@ -179,19 +179,19 @@ td.title .filter-menu {
 
 td.title .filter-menu span {
 	display: block;
-	width: 30px;
-	height: 30px;
+	width: 20px;
+	height: 20px;
 	font-size: 18px;
-	color: rgba(255,255,255,0);
+	color: rgba(0,0,0,0.05);
 	text-align: center;
-	line-height: 30px;
+	line-height: 20px;
 	padding-right: 10px;
 	cursor: pointer;
 	-webkit-transition: all 0.2s ease-in-out;
 }
 
 td.title:hover .filter-menu span {
-	color: #999;
+	color: rgba(0,0,0,0.5);
 	background: #fff;
 }
 
@@ -208,11 +208,11 @@ td.title .filter-menu .quick-filter {
 	box-shadow: 0 2px 10px rgba(0,0,0,0.1);
 	z-index: 100;
 	width: 170px;
-	top: 30px;
+	top: 25px;
 }
 
 td.title .filter-menu:hover .quick-filter {
-	left: -68px;
+	left: -74px;
 }
 
 td.title .filter-menu .quick-filter li a {
