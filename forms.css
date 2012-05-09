@@ -557,6 +557,7 @@ legend + .control-group {
   filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
   *margin-left: .3em;
 }
+
 .btn:hover,
 .btn:active,
 .btn.active,

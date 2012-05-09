@@ -1,6 +1,6 @@
 {
 	"name": "HackerNew",
-	"version": "0.3",
+	"version": "0.31",
 	"description": "Making Hacker News quicker and more useful.",
 	"background_page": "background.html",
 	"icons": {

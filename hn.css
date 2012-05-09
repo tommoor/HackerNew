@@ -15,12 +15,23 @@ table {
 	padding-right: 10px;
 }
 
+.pagetop a,
+.pagetop a:link,
+.pagetop a:visited {
+	color: #444 !important;
+}
+
 .pagetop .topsel a,
 .pagetop .topsel a:link, 
 .pagetop .topsel a:visited {
-	color: #000;
+	color: #000 !important;
 	font-weight: bold;
 }
+
+.pagetop a:hover {
+	color: #000 !important;
+}
+
 
 /*********** Filters *****************/
 
@@ -90,6 +101,17 @@ table {
 	border-bottom: 1px solid #6F2020;
 }
 
+
+/*********** Code Comments ***********/
+
+pre {
+	background: #f1f1f1;
+	padding: 20px 20px 20px 0 !important;
+	color: #333;
+	border-radius: 3px;
+}
+
+
 /*********** News Listings ***********/
 
 body > center > table {
@@ -129,6 +151,10 @@ td.title:first-child {
 	min-width: 33px;
 }
 
+td.subtext {
+	font-size: 10px;
+}
+
 td.subtext a:hover {
 	color: #444;
 }
@@ -136,7 +162,7 @@ td.subtext a:hover {
 
 /*********** Vote Arrows ****************/
 
-html.news tr>td>center>a {
+tr>td>center>a {
 	padding: 4px;
 	vertical-align: bottom;
 	opacity: 0.8;
@@ -144,9 +170,15 @@ html.news tr>td>center>a {
 	top: 3px;
 }
 
-html.news tr>td>center>a:hover {
+tr>td>center>a:hover {
 	opacity: 1;
 }
+
+/* Fix reply indentation on comments page */
+html.item tr>td>center>a {
+	padding: 0;
+}
+
 
 
 /*********** Story Share Menu ***********/

@@ -21,6 +21,9 @@ var hn = {
 	setPage: function(){
 	
 		switch(window.location.pathname) {
+			case '/newcomments':
+				$('html').addClass('comments');
+				break;
 			case '/item':
 				$('html').addClass('item');
 				hn.augmentComments();
