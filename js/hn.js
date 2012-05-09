@@ -46,8 +46,8 @@ var hn = {
 	},
 	
 	createFilterMenu: function(){
-		$('.pagetop').last().prepend('<a id="menu-filters">filters <span class="count"></span></a> | ');
-		$('.pagetop').parents('tr').first().after('<tr><td colspan="3" id="filter-wrapper"><em></em><input type="text" id="add-filter" placeholder="Add a filter term or phrase" /><p class="empty">Add a filter on the right to get started.</p><ul id="current-filters"></ul></td></tr>');
+		$('.pagetop').last().prepend('<a id="menu-filters">filters<span class="count"></span></a> | ');
+		$('.pagetop').parents('tr').first().after('<tr><td colspan="3" id="filter-wrapper"><em></em><input type="text" id="add-filter" placeholder="Add a term or phrase to filter" /><p class="empty">Add a filter on the right to no longer see it on HN.</p><ul id="current-filters"></ul></td></tr>');
 		hn.refreshFilters();
 	},
 	

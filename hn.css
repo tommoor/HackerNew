@@ -1,5 +1,5 @@
 body {
-	background: #f9f9f9;
+	background: rgba(0,0,0,0.05);
 	margin: 0;
 }
 
@@ -136,7 +136,7 @@ td.subtext a:hover {
 
 /*********** Vote Arrows ****************/
 
-tr>td>center>a {
+html.news tr>td>center>a {
 	padding: 4px;
 	vertical-align: bottom;
 	opacity: 0.8;
@@ -144,7 +144,7 @@ tr>td>center>a {
 	top: 3px;
 }
 
-tr>td>center>a:hover {
+html.news tr>td>center>a:hover {
 	opacity: 1;
 }
 
