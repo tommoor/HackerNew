@@ -348,10 +348,14 @@ a.toggle-replies.collapsed {
 	width: 100%;
 }
 
-#quick-reply input[type=submit] {
-	margin-left: 0;
+#quick-reply textarea {
+	height: 80px !important;
 }
 
+#quick-reply input[type=submit] {
+	margin-left: 0;
+	margin-top: 20px;
+}
 
 #quick-reply .loading {
 	min-height: 38px;

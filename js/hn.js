@@ -45,7 +45,7 @@ var hn = {
 	
 	createQuickReply: function(){
 	
-		$('body').append('<div id="quick-reply"><em></em><div class="reply"></div></div>');
+		$('body').append('<div id="quick-reply"><em></em><div class="reply"><form><textarea></textarea><input type="submit" value="reply" class="btn" /></form></div></div>');
 	},
 	
 	createFilterMenu: function(){
@@ -186,24 +186,25 @@ var hn = {
 		var $point = $(this);
 		var $element = $('#quick-reply').clone();
 		var $reply = $('.reply', $element);
+		var $textarea =  $('textarea', $reply);
+		var $temp = $('<div/>');
 		var url = $(this).attr('href') + ' form';
 		
 		$point.after($element);
 		$point.remove();
 		
 		// load reply page into quick reply container
-		$reply.empty();
-		$reply.addClass('loading');
-		$reply.load(url, function(){
+		$('form', $element).submit(function(ev){
+			ev.preventDefault();
 			
-			// so submit button receives twitter styling
-			$reply.find('input').addClass('btn');
+			// show that we are doing something
+			$('input', $element).val('saving...');
 			
-			// remove spinner
-			$reply.removeClass('loading');
-			
-			// focus ready for reply ;)
-			$reply.find('textarea').focus();	
+			$temp.load(url, function(){
+
+				$temp.find('textarea').val($textarea.val());
+				$temp.find('form').submit();
+			});
 		});
 	},
 	
