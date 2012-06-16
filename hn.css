@@ -346,6 +346,7 @@ a.toggle-replies.collapsed {
 
 #quick-reply {
 	width: 100%;
+	display: none;
 }
 
 #quick-reply textarea {

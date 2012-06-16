@@ -98,6 +98,8 @@ var hn = {
 			hn.addFilter($(this).data('filter'));
 			hn.refreshFilters();
 		});
+				
+		$('textarea').first().autogrow();
 		
 		$('.toggle-replies').click(hn.toggleReplies);
 		
@@ -190,16 +192,19 @@ var hn = {
 		var $temp = $('<div/>');
 		var url = $(this).attr('href') + ' form';
 		
+		$element.css('display', 'block');
 		$point.after($element);
 		$point.remove();
+		$textarea.autogrow();
 		
-		// load reply page into quick reply container
+		// upon reply
 		$('form', $element).submit(function(ev){
 			ev.preventDefault();
 			
 			// show that we are doing something
 			$('input', $element).val('saving...');
 			
+			// load real reply form from server, modify and submit
 			$temp.load(url, function(){
 
 				$temp.find('textarea').val($textarea.val());
