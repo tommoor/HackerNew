@@ -539,7 +539,7 @@ a.toggle-replies.collapsed {
 	padding:3px 0px;
 }
 
-body center table
+body > center > table
 {
 	width:80% !important;
 }
