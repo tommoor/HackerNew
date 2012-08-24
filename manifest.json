@@ -1,12 +1,16 @@
 {
 	"name": "HackerNew",
-	"version": "0.4",
+	"version": "0.5",
 	"description": "Making Hacker News quicker and more useful since 2012.",
-	"background_page": "background.html",
+	"background" : {
+		"page" : "background.html"
+	},
 	"icons": {
 		"48": "images/icon-48.png",
 		"128": "images/icon-128.png"
 	},
+	"manifest_version" : 2,
+	
 	"content_scripts": [
 	    {
 	      "matches": [

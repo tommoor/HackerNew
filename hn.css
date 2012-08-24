@@ -523,3 +523,31 @@ a.toggle-replies.collapsed {
 .icon-yelp { background-position: 0 -1479px; } 
 .icon-yiid { background-position: 0 -1496px; } 
 .icon-youtube { background-position: 0 -1513px; }
+
+.yclinks
+{
+	position:fixed;
+	display:block;
+	top:10px;
+	left:5px;
+	border:1px solid #333;
+	border: 1px solid #CCC;
+	padding: 5px;
+}
+.yclinks a
+{
+	display:block;
+	text-align:left;
+	text-align:left;
+	padding:3px 0px;
+}
+
+.yclinks a:hover
+{
+	text-decoration: underline;
+}
+
+body > center > table
+{
+	width:80% !important;
+}

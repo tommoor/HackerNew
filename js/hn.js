@@ -8,7 +8,8 @@ var hn = {
 	endless_preload: 200,
 	
 	init: function(){
-	
+		hn.moveSearchToTop();
+		hn.removeSeperatorsFromYcLinks();
 		hn.setPage();
 		hn.styleElements();
 		hn.createProfileBubble();
@@ -16,6 +17,7 @@ var hn = {
 		hn.createFilterMenu();
 		hn.augmentStories();
 		hn.bindEvents();
+		
 	},
 	
 	setPage: function(){
@@ -32,7 +34,22 @@ var hn = {
 				$('html').addClass('news');
 		}
 	},
-	
+	moveSearchToTop : function()
+	{
+		var mainBody = $('center > table > tbody > tr:eq(2)');
+		mainBody.addClass('mainBody');
+		var searchRow = $('center > table > tbody > tr:last-child');
+		searchRow.addClass('searchRow');
+		searchRow.insertBefore(mainBody);
+	},
+	removeSeperatorsFromYcLinks : function()
+	{
+		var yclinks = $('.yclinks');
+		var anchorElements = yclinks.children('a');
+		yclinks.html(anchorElements);
+		yclinks.insertAfter($('body'));
+		$('.searchRow br').remove();
+	},
 	styleElements: function(){
 	
 		$('input[type=submit]').addClass('btn');
