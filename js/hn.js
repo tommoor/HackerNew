@@ -8,7 +8,8 @@ var hn = {
 	endless_preload: 200,
 	
 	init: function(){
-	
+		hn.moveSearchToTop();
+		hn.removeSeperatorsFromYcLinks();
 		hn.setPage();
 		hn.styleElements();
 		hn.createProfileBubble();
@@ -16,8 +17,7 @@ var hn = {
 		hn.createFilterMenu();
 		hn.augmentStories();
 		hn.bindEvents();
-		hn.moveSearchToTop();
-		hn.removeSeperatorsFromYcLinks();
+		
 	},
 	
 	setPage: function(){
