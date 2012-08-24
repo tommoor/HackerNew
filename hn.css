@@ -529,7 +529,10 @@ a.toggle-replies.collapsed {
 	position:fixed;
 	display:block;
 	top:10px;
-	left:10px;
+	left:5px;
+	border:1px solid #333;
+	border: 1px solid #CCC;
+	padding: 5px;
 }
 .yclinks a
 {
@@ -537,6 +540,11 @@ a.toggle-replies.collapsed {
 	text-align:left;
 	text-align:left;
 	padding:3px 0px;
+}
+
+.yclinks a:hover
+{
+	text-decoration: underline;
 }
 
 body > center > table
