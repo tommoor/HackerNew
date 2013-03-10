@@ -5,7 +5,7 @@ var hn = {
 	identport: null,
 	identelem: null,
 	endless_loading: false,
-	endless_preload: 200,
+	endless_preload: 300,
 	
 	init: function(){
 	
@@ -14,8 +14,6 @@ var hn = {
 		hn.replaceImages();
 		hn.createSearchBar();
 		hn.createProfileBubble();
-		hn.createQuickReply();
-		hn.createFilterMenu();
 		hn.augmentStories();
 		hn.bindEvents();
 	},
@@ -23,12 +21,17 @@ var hn = {
 	setPage: function(){
 	
 		switch(window.location.pathname) {
+			case '/news':
+			case '/newest':
+				hn.createFilterMenu();
+				break;
 			case '/newcomments':
 				$('html').addClass('comments');
 				break;
 			case '/item':
 				$('html').addClass('item');
 				hn.augmentComments();
+				hn.createQuickReply();
 				break;
 			default:
 				$('html').addClass('news');
@@ -214,6 +217,7 @@ var hn = {
 		$point.after($element);
 		$point.remove();
 		$textarea.autogrow();
+		$textarea.focus();
 		
 		// upon reply
 		$('form', $element).submit(function(ev){
