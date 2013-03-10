@@ -11,7 +11,9 @@
 	},
   "manifest_version": 2,
   "web_accessible_resources": [
-    "images/star.png",
+    "images/karma.png",
+    "images/follow.png",
+    "images/unfollow.png",
     "images/loading.gif",
     "images/loading-light.gif",
     "images/icons.png",

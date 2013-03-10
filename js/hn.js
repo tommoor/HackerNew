@@ -76,7 +76,7 @@ var hn = {
 	
 	refreshFilters: function(){
 	
-		var filters = hn.getFilters();
+		var filters = hn.getStorage('filters');
 		var $filters = '';
 		
 		for(var i=0, l=filters.length; i < l; i++){
@@ -101,24 +101,42 @@ var hn = {
 		});
 		
 		$('a.filter.remove').live('click', function(){
-			hn.removeFilter($(this).data('filter'));
+			hn.removeStorage("filters", $(this).data('filter'));
 			hn.filterStories();
 			hn.refreshFilters();
 		});
 		
 		$('#add-filter').keyup(function(ev){
 			if (ev.keyCode == 13) {
-				hn.addFilter($(this).val());
+				hn.addStorage("filters", $(this).val());
 				$(this).val('');
 				hn.refreshFilters();
 			}
 		});
 		
 		$('.add-filter').live('click', function(ev){
-			hn.addFilter($(this).data('filter'));
+			hn.addStorage("filters", $(this).data('filter'));
 			hn.refreshFilters();
 		});
-				
+		
+		$('.follow-user').live('click', function(ev){
+			hn.addStorage("follows", $(this).data('username'));
+			hn.updateHighlights();
+			
+			// toggle visible button
+			$(this).hide();
+			$(this).parent().find('.unfollow-user').show();
+		});
+		
+		$('.unfollow-user').live('click', function(ev){
+			hn.removeStorage("follows", $(this).data('username'));
+			hn.updateHighlights();
+			
+			// toggle visible button
+			$(this).hide();
+			$(this).parent().find('.follow-user').show();
+		});
+		
 		$('textarea').first().autogrow();
 		
 		$('.toggle-replies').click(hn.toggleReplies);
@@ -273,10 +291,12 @@ var hn = {
 		       .data('uniq', uniq);
 	},
 	
-	loadUserDetails: function(){
-	
+	loadUserDetails: function(ev){
+		
 		var $temp = $('<div/>');
 		var url = $(this).attr('href') + ' table';
+		var username = $(this).text();
+		
 		hn.identelem = $(this);
 		hn.renderProfileBubble();
 		
@@ -304,28 +324,29 @@ var hn = {
 		    };
 		
 			if (filtered.length) {
-				// clean list of profile urls :-)
-				hn.loadUserProfiles(filtered, karma);
+				hn.renderProfileBubble([], filtered, username, karma);
+				
+				// clean list of profile urls through social lib
+				hn.loadUserProfiles(filtered, function(identities){
+					hn.renderProfileBubble(identities, urls, username, karma);
+				});
 			} else {
-				hn.renderProfileBubble([], [], karma);
+				// otherwise just render a plain profile bubble
+				hn.renderProfileBubble([], [], username, karma);
 			}
 		});
 	},
 	
-	loadUserProfiles: function(urls, karma){
-		
-		hn.renderProfileBubble([], urls, karma);
+	loadUserProfiles: function(urls, callback){
 		
 		var name = 'ident' + (new Date).getTime();
 		var port = chrome.extension.connect({name: name});
 		port.postMessage({urls: urls});
-		port.onMessage.addListener(function(identities){
-			hn.renderProfileBubble(identities, urls, karma);
-		});
+		port.onMessage.addListener(callback);
 		hn.identport = port;
 	},
 	
-	renderProfileBubble: function(identities, urls, karma){
+	renderProfileBubble: function(identities, urls, username, karma){
 		
 		if (identities || urls || karma) {
 			
@@ -348,11 +369,12 @@ var hn = {
 				name: karma
 			});
 		}
-				
+		
 		// reset bubble
 		var $profile = $('#profile-bubble .profile');
 		$profile.empty().removeClass('loading');
 		
+		// loaded
 		if (identities && identities.length > 0){
 			var ul = $('<ul class="profile-list"></ul>').appendTo($profile);
 
@@ -363,6 +385,18 @@ var hn = {
 					$('<li><a href="' + identities[x].profileUrl  + '" target="_blank"><div class="icon ' + identities[x].spriteClass +  '"></div> <span class="icon-label">' + identities[x].domain + '</span></a></li>').appendTo(ul);
 				}
 			}
+			
+			// following / highlights
+			var follows = hn.getStorage("follows");
+			$profile.prepend('<a data-username="'+username+'" class="follow-user"><div class="icon icon-follow"></div><span class="icon-label">Follow</span><span class="username">'+username+'</span></a></a>' +
+							 '<a data-username="'+username+'" class="unfollow-user"><div class="icon icon-unfollow"></div><span class="icon-label">Unfollow</span><span class="username">'+username+'</span></a>');
+			
+			if ($.inArray(username, follows) == -1) {
+				$('.unfollow-user', $profile).hide();
+			} else {
+				$('.follow-user', $profile).hide();
+			}
+			
 		} else {
 			$profile.addClass('loading');
 		}
@@ -388,6 +422,8 @@ var hn = {
 	
 	augmentStories: function($context){
 		
+		var follows = hn.getStorage("follows");
+		
 		if (!$context) {
 			var $context = $('body');
 		}
@@ -401,7 +437,15 @@ var hn = {
 			
 			// extract story info
 			var domain = $('.comhead', $title).text().replace(/\(|\)/g, '');
-			var username = $('a', $details).first().text();
+			var $username = $('a', $details).first();
+			var username = $username.text();
+			
+			// following
+			if ($.inArray(username, follows) != -1) {
+				$username.addClass('highlighted');
+			} else {
+				$username.removeClass('highlighted');
+			}
 			
 			// add filtering options
 			$link.before('<div class="filter-menu"><span>&#215;</span> <div class="quick-filter"><em></em> <ul>'+
@@ -420,11 +464,34 @@ var hn = {
 	},
 	
 	augmentComments: function(){
+		
 		$('span.comment').each(function(){
 			var $wrapper = $(this).parent();
 			var $meta = $wrapper.find('span.comhead');
 			
 			$meta.append('<a class="toggle-replies">collapse<a>');
+			
+		});
+		
+		hn.updateHighlights();
+	},
+	
+	updateHighlights: function() {
+		
+		var follows = hn.getStorage("follows");
+		
+		$('span.comment').each(function(){
+			var $wrapper = $(this).parent();
+			var $meta = $wrapper.find('span.comhead');
+			var $username = $('a', $meta).first();
+			var username = $username.text();
+			
+			// following
+			if ($.inArray(username, follows) != -1) {
+				$username.addClass('highlighted');
+			} else {
+				$username.removeClass('highlighted');
+			}
 		});
 	},
 	
@@ -468,7 +535,7 @@ var hn = {
 	
 	checkFiltered: function(title, domain, username){
 		
-		var filters = hn.getFilters();
+		var filters = hn.getStorage('filters');
 		var filter;
 		
 		for(var i=0, l=filters.length; i < l; i++){
@@ -496,33 +563,33 @@ var hn = {
 		return false;
 	},
 	
-	getFilters: function(){
-		return JSON.parse(localStorage.getItem("filters")) || [];
+	getStorage: function(name){
+		return JSON.parse(localStorage.getItem(name)) || [];
 	},
 	
-	setFilters: function(filters){
-		return localStorage.setItem("filters", JSON.stringify(filters));
+	setStorage: function(name, data){
+		return localStorage.setItem(name, JSON.stringify(data));
 	},
 	
-	addFilter: function(filter){
-		var f = hn.getFilters();
-		var pos = f.indexOf(filter);
+	addStorage: function(name, item){
+		var f = hn.getStorage(name);
+		var pos = f.indexOf(item);
 		
 		// if the filter doesnt already exist
 		if (pos == -1) {
-			f.push(filter);
-			hn.setFilters(f);
+			f.push(item);
+			hn.setStorage(name, f);
 		}
 	},
 	
-	removeFilter: function(filter){
-		var f = hn.getFilters();
-		var pos = f.indexOf(filter);
+	removeStorage: function(name, item){
+		var f = hn.getStorage(name);
+		var pos = f.indexOf(item);
 		
 		// if the filter exists
 		if (pos != -1) {
 			f.splice(pos, 1);
-			hn.setFilters(f);
+			hn.setStorage(name, f);
 		}
 	}
 };

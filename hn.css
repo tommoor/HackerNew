@@ -372,6 +372,14 @@ form textarea {
 	min-width: 600px;
 }
 
+a.highlighted {
+	margin: -2px 0;
+	padding: 2px 3px;
+	background: #ed7233;
+	color: #fff !important;
+	border-radius: 2px;
+}
+
 font u a:link,
 .comment a:link {
 	color: #2279B2;
@@ -482,6 +490,17 @@ a.toggle-replies.collapsed {
 	list-style: none;
 }
 
+#profile-bubble .follow-user,
+#profile-bubble .unfollow-user {
+	cursor: pointer;
+	margin: 0 -10px 5px -10px;
+	padding: 5px 10px;
+}
+
+#profile-bubble .follow-user:hover,
+#profile-bubble .unfollow-user:hover {
+	background: #000;
+}
 
 /*********** Ident Icons ***********/
 
@@ -498,7 +517,9 @@ a.toggle-replies.collapsed {
 	border-radius: 3px;
 }
 
-.icon-karma { background: url(chrome-extension://__MSG_@@extension_id__/images/star.png) no-repeat top left; } 
+.icon-karma { background: url(chrome-extension://__MSG_@@extension_id__/images/karma.png) no-repeat top left; background-size: 100%;} 
+.icon-follow { background: url(chrome-extension://__MSG_@@extension_id__/images/follow.png) no-repeat top left; background-size: 100%;} 
+.icon-unfollow { background: url(chrome-extension://__MSG_@@extension_id__/images/unfollow.png) no-repeat top left; background-size: 100%;} 
 .icon-12secondstv { background-position: 0 0; } 
 .icon-43people { background-position: 0 -17px; } 
 .icon-43places { background-position: 0 -34px; } 
