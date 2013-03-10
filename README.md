@@ -13,6 +13,7 @@ https://chrome.google.com/webstore/detail/lgoghlndihpmbbgmbpjohilcphbfhddd
 ## Features
 
 * Improved readability design
+* Retina screen support
 * Quick inline replies
 * Quick profiles with social network info when hovering over usernames
 * Filtering of stories based on terms and phrases / domain or username
