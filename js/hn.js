@@ -6,6 +6,7 @@ var hn = {
 	identelem: null,
 	endless_loading: false,
 	endless_preload: 200,
+	endless_suppress: false,
 	
 	init: function(){
 	
@@ -119,6 +120,12 @@ var hn = {
 		
 		$(document).click(hn.closeQuickReply);
 		$(document).scroll(hn.checkPageEnd);
+		$(document).keydown(function(ev) {
+			if(ev.which == 27) hn.endless_suppress = true;
+		});
+		$(document).keyup(function(ev) {
+			if(ev.which == 27) hn.endless_suppress = false;
+		});
 	},
 	
 	shareStory: function(element, url, title){
@@ -160,6 +167,7 @@ var hn = {
 	
 	loadNextPage: function(){
 	
+		if(hn.endless_suppress) return;
 		hn.endless_loading = true;
 		
 		var $temp = $('<div/>');
