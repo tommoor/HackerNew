@@ -87,7 +87,9 @@ table table a[href='http://ycombinator.com'] img {
 }
 
 #menu-filters .count {
+	display: block;
 	position: absolute;
+	min-width: 6px;
 	top: -1px;
 	left: -16px;
 	padding: 1px 3px;
@@ -187,7 +189,7 @@ td.title {
 td.title a {
 	font-size: 20px;
 	letter-spacing: -1px;
-	color: #2279B2;
+	color: rgb(0, 105, 173);
 }
 
 td.title a:hover {

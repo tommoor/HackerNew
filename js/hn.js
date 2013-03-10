@@ -393,6 +393,7 @@ var hn = {
 			var $link = $('a', this);
 			var $title = $link.parent();
 			var $details = $title.parent().next().find('td.subtext');
+			var $flag = $('a', $details).eq(1);
 			
 			// extract story info
 			var domain = $('.comhead', $title).text().replace(/\(|\)/g, '');
@@ -405,7 +406,7 @@ var hn = {
 			'</ul></div></div>');
 			
 			// add sharing options
-			$details.append(' | <a class="share-story" href="#">share</a>');
+			$flag.after(' | <a class="share-story" href="#">share</a>');
 			
 			$('.share-story', $details).click(function(ev){
 				ev.preventDefault();
