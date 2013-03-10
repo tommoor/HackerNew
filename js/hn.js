@@ -11,6 +11,7 @@ var hn = {
 	
 		hn.setPage();
 		hn.styleElements();
+		hn.createSearchBar();
 		hn.createProfileBubble();
 		hn.createQuickReply();
 		hn.createFilterMenu();
@@ -54,13 +55,22 @@ var hn = {
 		hn.refreshFilters();
 	},
 	
+	createSearchBar: function() {
+		var $footer = $('body > center > table > tbody > tr:nth-child(4) > td');
+		var footer = $footer.html();
+		$footer.remove();
+		
+		$('body').append('<div class="footer">'+ footer +'</div>');
+		$('.footer input').attr('placeholder', 'Search...');
+	},
+	
 	refreshFilters: function(){
 	
 		var filters = hn.getFilters();
 		var $filters = '';
 		
 		for(var i=0, l=filters.length; i < l; i++){
-			$filters += '<li><a class="filter remove" data-filter="'+filters[i]+'" title="Remove filter">'+filters[i]+'</a></li>'
+			$filters += '<li><a class="filter remove" data-filter="'+filters[i]+'" title="Remove filter">'+filters[i]+'</a></li>';
 		}
 		
 		// show placeholder message
@@ -437,9 +447,9 @@ var hn = {
 		
 		// show number of filtered stories in header
 		if (count > 0) {
-			$('#menu-filters .count').text('('+count+')');
+			$('#menu-filters .count').text(count).fadeIn();
 		} else {
-			$('#menu-filters .count').text('');
+			$('#menu-filters .count').text('').hide();
 		}
 	},
 	
