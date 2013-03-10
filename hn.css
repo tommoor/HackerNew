@@ -13,6 +13,7 @@ table {
 
 .pagetop b {
 	padding-right: 10px;
+	display: none;
 }
 
 .pagetop a,
