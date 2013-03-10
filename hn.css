@@ -11,9 +11,9 @@ table {
 
 /*********** Header ******************/
 
-table table img[src='http://ycombinator.com/images/y18.gif'] {
+table table a[href='http://ycombinator.com'] img {
 	padding-left: 8px;
-	padding-right: 11px;
+	padding-right: 4px;
 }
 
 .pagetop {
@@ -22,7 +22,7 @@ table table img[src='http://ycombinator.com/images/y18.gif'] {
 }
 
 .pagetop b {
-	display: none;
+	padding-right: 10px;
 }
 
 .pagetop a,
@@ -226,7 +226,12 @@ tr>td>center>a {
 	vertical-align: bottom;
 	opacity: 0.8;
 	position: relative;
-	top: 3px;
+	top: 4px;
+}
+
+tr>td>center>a>img {
+	width: 10px;
+	height: 10px;
 }
 
 tr>td>center>a:hover {

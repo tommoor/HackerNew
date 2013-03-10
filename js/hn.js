@@ -11,6 +11,7 @@ var hn = {
 	
 		hn.setPage();
 		hn.styleElements();
+		hn.replaceImages();
 		hn.createSearchBar();
 		hn.createProfileBubble();
 		hn.createQuickReply();
@@ -37,6 +38,12 @@ var hn = {
 	styleElements: function(){
 	
 		$('input[type=submit]').addClass('btn');
+	},
+	
+	replaceImages: function(){
+		$("img[src='http://ycombinator.com/images/y18.gif']").attr('src', chrome.extension.getURL("/images/icon.png"));
+		$("img[src='http://ycombinator.com/images/grayarrow.gif']").attr('src', chrome.extension.getURL("/images/arrow-up.png")).show();
+		$("img[src='http://ycombinator.com/images/graydown.gif']").attr('src', chrome.extension.getURL("/images/arrow-down.png")).show();
 	},
 	
 	createProfileBubble: function(){
@@ -186,6 +193,7 @@ var hn = {
 			
 			// refilter news stories
 			hn.filterStories();
+			hn.replaceImages();
 			
 			// bind quick profiles
 			$('a[href^=user]').hoverIntent(hn.loadUserDetails, function(){});

@@ -14,7 +14,10 @@
     "images/star.png",
     "images/loading.gif",
     "images/loading-light.gif",
-    "images/icons.png"
+    "images/icons.png",
+    "images/icon.png",
+    "images/arrow-up.png",
+    "images/arrow-down.png"
   ],
 	"content_scripts": [
 	    {
