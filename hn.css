@@ -181,13 +181,13 @@ body > center > table {
 }
 
 td.title {
-	padding: 10px 0 2px;
+	padding: 8px 0 0px;
 	position: relative;
 	background: none;
 }
 
 td.title a {
-	font-size: 20px;
+	font-size: 18px;
 	letter-spacing: -1px;
 	color: rgb(0, 105, 173);
 }
