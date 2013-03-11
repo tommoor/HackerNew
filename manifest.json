@@ -1,6 +1,6 @@
 {
 	"name": "HackerNew",
-	"version": "1.1.0",
+	"version": "1.2.0",
 	"description": "The best Hacker News extension, making HN quicker and more useful since 2012.",
 	"background": {
 	  "page": "background.html"

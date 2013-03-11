@@ -29,6 +29,7 @@ var hn = {
 				$('html').addClass('comments');
 				break;
 			case '/item':
+			case '/threads':
 				$('html').addClass('item');
 				hn.augmentComments();
 				hn.createQuickReply();
@@ -66,7 +67,7 @@ var hn = {
 	},
 	
 	createSearchBar: function() {
-		var $footer = $('body > center > table > tbody > tr:nth-child(4) > td');
+		var $footer = $('.yclinks').parents('td');
 		var footer = $footer.html();
 		$footer.remove();
 		
