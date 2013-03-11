@@ -9,6 +9,26 @@ table {
 }
 
 
+/*********** Fonts *******************/
+
+body,
+td,
+.admin td,
+.subtext td,
+input[type=\"submit\"],
+.default,
+.admin,
+.title,
+.adtitle,
+.subtext,
+.yclinks,
+.pagetop,
+.comhead,
+.comment,
+.dead {
+	font-family: Verdana, Geneva, sans-serif !important;
+}
+
 /*********** Header ******************/
 
 table table a[href='http://ycombinator.com'] img {
