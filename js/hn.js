@@ -207,7 +207,6 @@ var hn = {
 			$temp = $temp.find('td.title:first-child').parent().parent().html();
 			
 			// add extra options to stories before appending to DOM
-			hn.augmentStories($temp);
 			$morerow.after($temp);
 			$morerow.remove();
 			
@@ -216,6 +215,7 @@ var hn = {
 			// refilter news stories
 			hn.filterStories();
 			hn.replaceImages();
+			hn.augmentStories();
 			
 			// bind quick profiles
 			$('a[href^=user]').hoverIntent(hn.loadUserDetails, function(){});
@@ -421,15 +421,11 @@ var hn = {
 		}
 	},
 	
-	augmentStories: function($context){
+	augmentStories: function(){
 		
 		var follows = hn.getStorage("follows");
 		
-		if (!$context) {
-			var $context = $('body');
-		}
-		
-		$('td.title', $context).each(function(){
+		$('td.title').not('.hn-processed').each(function(){
 			
 			var $link = $('a', this);
 			var $title = $link.parent();
@@ -461,6 +457,8 @@ var hn = {
 				ev.preventDefault();
 				hn.shareStory(this, $link.attr('href'), $link.text());
 			});
+			
+			$(this).addClass('hn-processed');
 		});
 	},
 	
