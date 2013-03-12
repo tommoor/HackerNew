@@ -13,6 +13,7 @@ https://chrome.google.com/webstore/detail/lgoghlndihpmbbgmbpjohilcphbfhddd
 ## Features
 
 * Improved readability design
+* User following
 * Retina screen support
 * Quick inline replies
 * Quick profiles with social network info when hovering over usernames
@@ -20,13 +21,6 @@ https://chrome.google.com/webstore/detail/lgoghlndihpmbbgmbpjohilcphbfhddd
 * Endless scrolling
 * Collapsible comment threads
 * Social sharing for Twitter, Facebook, Google+, Buffer
-
-
-## Todo
-
-* Refactoring
-* Highlighting of stories based on terms / domain / username
-* Caching of quick profiles
 
 
 ## License
