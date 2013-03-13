@@ -260,9 +260,10 @@ var hn = {
 		
 		if ($button.hasClass('collapsed')) {
 			var uniq = $button.data('uniq');
-			$('.hidden-reply-' + uniq).fadeIn().removeClass();
-			$button.text('collapse')
+			$('.hidden-reply-' + uniq).show().removeClass();
+			$button.text('[-]')
 			       .removeClass('collapsed');
+            $button.parent().parent().parent().children(".comment, p").show();
 			return;
 		}
 		
@@ -278,7 +279,7 @@ var hn = {
 					count++;
 					
 					// find parent tr, several levels down
-					$(this).parent().parent().parent().parent().parent().fadeOut().addClass('hidden-reply-' + uniq);
+					$(this).parent().parent().parent().parent().parent().hide().addClass('hidden-reply-' + uniq);
 					return true;
 				}
 				
@@ -286,8 +287,9 @@ var hn = {
 				return false;
 			}
 		});
+        $button.parents("td.default").children("span.comment, p").hide();
 		
-		$button.text('show ' + count + ' replies')
+		$button.text("[+]")
 		       .addClass('collapsed')
 		       .data('uniq', uniq);
 	},
@@ -468,7 +470,7 @@ var hn = {
 			var $wrapper = $(this).parent();
 			var $meta = $wrapper.find('span.comhead');
 			
-			$meta.append('<a class="toggle-replies">collapse<a>');
+			$meta.prepend('<a class="toggle-replies">[-]<a> ');
 			
 		});
 		
