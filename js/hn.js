@@ -470,7 +470,7 @@ var hn = {
 			var $wrapper = $(this).parent();
 			var $meta = $wrapper.find('span.comhead');
 			
-			$meta.append(' <a class="toggle-replies">[-]<a>');
+			$meta.prepend('<a class="toggle-replies">[-]<a> ');
 			
 		});
 		
