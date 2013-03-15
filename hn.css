@@ -411,10 +411,7 @@ font u a:visited,
 }
 
 a.toggle-replies {
-	float: right;
 	cursor: pointer;
-	opacity: 0;
-	-webkit-transition: all 0.2s ease-in-out;
 }
 
 a.toggle-replies:hover {
@@ -424,17 +421,6 @@ a.toggle-replies:hover {
 td.default:hover a.toggle-replies {
 	opacity: 1;
 }
-
-a.toggle-replies.collapsed {
-	opacity: 1;
-	
-	padding: 3px 6px;
-	margin: -5px;
-	background: #828282;
-	color: white;
-	border-radius: 3px;
-}
-
 
 /*********** Inline Replies ***********/
 
