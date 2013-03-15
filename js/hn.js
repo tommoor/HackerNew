@@ -484,7 +484,7 @@ var hn = {
 		$('span.comment').each(function(){
 			var $wrapper = $(this).parent();
 			var $meta = $wrapper.find('span.comhead');
-			var $username = $('a', $meta).first();
+			var $username = $('a', $meta).eq(2);
 			var username = $username.text();
 			
 			// following
