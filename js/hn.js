@@ -48,6 +48,7 @@ var hn = {
 		$("img[src='y18.gif']").attr('src', chrome.extension.getURL("/images/icon.png"));
 		$("img[src='grayarrow.gif']").attr('src', chrome.extension.getURL("/images/arrow-up.png")).show();
 		$("img[src='graydown.gif']").attr('src', chrome.extension.getURL("/images/arrow-down.png")).show();
+        $("link[rel='shortcut icon']").attr('href', chrome.extension.getURL("/images/icon.png"));
 	},
 	
 	createProfileBubble: function(){
