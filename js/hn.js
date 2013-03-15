@@ -45,9 +45,9 @@ var hn = {
 	},
 	
 	replaceImages: function(){
-		$("img[src='http://ycombinator.com/images/y18.gif']").attr('src', chrome.extension.getURL("/images/icon.png"));
-		$("img[src='http://ycombinator.com/images/grayarrow.gif']").attr('src', chrome.extension.getURL("/images/arrow-up.png")).show();
-		$("img[src='http://ycombinator.com/images/graydown.gif']").attr('src', chrome.extension.getURL("/images/arrow-down.png")).show();
+		$("img[src='y18.gif']").attr('src', chrome.extension.getURL("/images/icon.png"));
+		$("img[src='grayarrow.gif']").attr('src', chrome.extension.getURL("/images/arrow-up.png")).show();
+		$("img[src='graydown.gif']").attr('src', chrome.extension.getURL("/images/arrow-down.png")).show();
 	},
 	
 	createProfileBubble: function(){
