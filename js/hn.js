@@ -35,6 +35,7 @@ var hn = {
 				hn.createQuickReply();
 				break;
 			default:
+			        hn.createFilterMenu();
 				$('html').addClass('news');
 		}
 	},
