@@ -243,8 +243,12 @@ td.subtext a:hover {
 
 /*********** Vote Arrows ****************/
 
+tr>td {
+	min-width: 20px;
+}
+
 tr>td>center>a {
-	padding: 4px;
+	padding: 0;
 	vertical-align: bottom;
 	opacity: 0.8;
 	position: relative;
