@@ -455,8 +455,8 @@ var hn = {
 				'<li><a data-filter="site:'+ domain +'" class="add-filter">Filter&nbsp;'+ domain +'</a></li>'+
 			'</ul></div></div>');
 			
-			// add sharing options
-			$flag.after(' | <a class="share-story" href="#">share</a>');
+			// add sharing and cache
+			$flag.after(' | <a href="http://webcache.googleusercontent.com/search?q=cache:'+ $link.attr('href') +'">cached</a> | <a class="share-story" href="#">share</a>');
 			
 			$('.share-story', $details).click(function(ev){
 				ev.preventDefault();
