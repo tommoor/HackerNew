@@ -23,6 +23,7 @@ var hn = {
 		switch(window.location.pathname) {
 			case '/news':
 			case '/newest':
+			case '/over':
 				hn.createFilterMenu();
 				break;
 			case '/newcomments':
