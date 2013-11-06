@@ -6,6 +6,11 @@ var hn = {
   identelem: null,
   endless_loading: false,
   endless_preload: 300,
+
+  config: {
+    // enable infinite scrolling
+    enable_inf_scroll: true
+  },
   
   init: function(){
   
@@ -150,7 +155,10 @@ var hn = {
     $('a[href^=reply]').click(hn.quickReply);
     
     $(document).click(hn.closeQuickReply);
-    $(document).scroll(hn.checkPageEnd);
+
+    if (hn.config.enable_inf_scroll) {
+      $(document).scroll(hn.checkPageEnd);
+    }
   },
   
   shareStory: function(element, url, title){
@@ -260,9 +268,10 @@ var hn = {
   toggleReplies: function(ev){
 
     var $button = $(this);
+    var uniq;
     
     if ($button.hasClass('collapsed')) {
-      var uniq = $button.data('uniq');
+      uniq = $button.data('uniq');
       $('.hidden-reply-' + uniq).show().removeClass();
       $button.text('[-]')
              .removeClass('collapsed');
@@ -272,7 +281,7 @@ var hn = {
     
     var count = 0;
     var parent = $button.parents('td.default').offset();
-    var uniq = (new Date()).getTime();
+    uniq = (new Date()).getTime();
     
     $('td.default').each(function(){
       var offset = $(this).offset();
@@ -316,18 +325,18 @@ var hn = {
       var urlsWithIndices = twttr.txt.extractUrlsWithIndices($temp.html());
       var filtered = [];
       
-        for (var i = 0; i < urlsWithIndices.length; i++) {
-      
+      for (var i = 0; i < urlsWithIndices.length; i++) {
+
         // ensure urls are properly formed
         if(!urlsWithIndices[i].url.match(/^https?:\/\//gi)){
           urlsWithIndices[i].url = 'http://' + urlsWithIndices[i].url;
         }
-        
+
         // filter out any ycombinator that might have got in there
         if(!urlsWithIndices[i].url.match(/ycombinator/gi)){
           filtered.push(urlsWithIndices[i].url);
         }
-        };
+      }
     
       if (filtered.length) {
         hn.renderProfileBubble([], filtered, username, karma);
@@ -345,7 +354,7 @@ var hn = {
   
   loadUserProfiles: function(urls, callback){
     
-    var name = 'ident' + (new Date).getTime();
+    var name = 'ident' + (new Date()).getTime();
     var port = chrome.extension.connect({name: name});
     port.postMessage({urls: urls});
     port.onMessage.addListener(callback);
@@ -385,7 +394,7 @@ var hn = {
       var ul = $('<ul class="profile-list"></ul>').appendTo($profile);
 
       for (var x = 0; x < identities.length; x++) {
-        if (identities[x].name != '') {
+        if (identities[x].name !== '') {
           $('<li><a href="' + identities[x].profileUrl  + '" target="_blank"><div class="icon ' + identities[x].spriteClass +  '"></div> <span class="icon-label">' + identities[x].name + '</span><span class="username">' + identities[x].username + '</span></a></li>').appendTo(ul);   
         } else {
           $('<li><a href="' + identities[x].profileUrl  + '" target="_blank"><div class="icon ' + identities[x].spriteClass +  '"></div> <span class="icon-label">' + identities[x].domain + '</span></a></li>').appendTo(ul);
@@ -540,7 +549,9 @@ var hn = {
   checkFiltered: function(title, domain, username){
     
     var filters = hn.getStorage('filters');
+
     var filter;
+    var regex;
     
     for(var i=0, l=filters.length; i < l; i++){
       
@@ -548,20 +559,20 @@ var hn = {
       if (filters[i].match(/^site:/)) {
         
         // domain name can be partial match
-        var re = new RegExp(filters[i].replace(/site:/i, ''), 'gi');
-        if (domain.match(re)) return true;
+        regex = new RegExp(filters[i].replace(/site:/i, ''), 'gi');
+        if (domain.match(regex)) return true;
         
       // filter user  
       } else if (filters[i].match(/^user:/)) {
         
         // username must be exact match
-        var re = new RegExp('^' + filters[i].replace(/user:/i, '') + '$', 'gi');
-        if (username.match(re)) return true;
+        regex = new RegExp('^' + filters[i].replace(/user:/i, '') + '$', 'gi');
+        if (username.match(regex)) return true;
       }
       
       // filter story title
-      var re = new RegExp(filters[i],"gi");
-      if (title.match(re)) return true;
+      regex = new RegExp(filters[i],"gi");
+      if (title.match(regex)) return true;
     }
     
     return false;
