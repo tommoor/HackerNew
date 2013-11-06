@@ -1,16 +1,20 @@
 var hn = {
-  
+
+  //configure various settings for the extension here
+  config: {
+
+      // enable endless scrolling
+      endless_enabled: true,
+      // height in pixels above the bottom of the page to begin loading the next page's date
+      endless_preload: 300
+  },
+
+  // current state variables
   loading: [],
   loaded: [],
   identport: null,
   identelem: null,
   endless_loading: false,
-  endless_preload: 300,
-
-  config: {
-    // enable infinite scrolling
-    enable_inf_scroll: true
-  },
   
   init: function(){
   
@@ -156,7 +160,7 @@ var hn = {
     
     $(document).click(hn.closeQuickReply);
 
-    if (hn.config.enable_inf_scroll) {
+    if (hn.config.endless_enabled) {
       $(document).scroll(hn.checkPageEnd);
     }
   },
@@ -191,7 +195,7 @@ var hn = {
     if (hn.endless_loading) return;
     
     // check if we're near the end
-    if (window.scrollY > $(document).height()-window.innerHeight-hn.endless_preload) {
+    if ( window.scrollY > ($(document).height() - window.innerHeight - hn.config.endless_preload) ) {
       
       // awesome, lets start loading
       hn.loadNextPage();
@@ -610,3 +614,4 @@ var hn = {
 };
 
 $(hn.init);
+//vim:fdm=marker
