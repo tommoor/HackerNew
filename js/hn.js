@@ -76,6 +76,15 @@ var hn = {
 		
 		$('body').append('<div class="footer">'+ footer +'</div>');
 		$('.footer input').attr('placeholder', 'Search...');
+
+		// Add key bindings for opening/closing the search bar
+		$(document).bind('keydown', 'ctrl+f', function() {
+			console.log("ctrl+f");
+			$(".footer").addClass("showFooter");
+		});
+		$(document).bind('keydown', 'esc', function() {
+			$(".footer").removeClass("showFooter");
+		});
 	},
 	
 	refreshFilters: function(){

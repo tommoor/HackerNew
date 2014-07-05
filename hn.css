@@ -75,6 +75,10 @@ table table a[href='http://ycombinator.com'] img {
 	-webkit-transition: bottom 1s;
 }
 
+.showFooter {
+	bottom: 0;
+}
+
 .footer:hover {
 	bottom: 0;
 }
