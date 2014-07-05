@@ -79,7 +79,6 @@ var hn = {
 
 		// Add key bindings for opening/closing the search bar
 		$(document).bind('keydown', 'ctrl+f', function() {
-			console.log("ctrl+f");
 			$(".footer").addClass("showFooter");
 		});
 		$(document).bind('keydown', 'esc', function() {

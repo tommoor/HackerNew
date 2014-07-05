@@ -35,7 +35,7 @@
       ],
       "js": [
 			  "js/libs/jquery-1.7.1.min.js",
-              "js/libs/jquery.hotkeys.js",
+			  "js/libs/jquery.hotkeys.js",
 			  "js/libs/jquery.hoverIntent.js",
 			  "js/libs/jquery.autogrow.js",
 			  "js/libs/twitter.text.js",
