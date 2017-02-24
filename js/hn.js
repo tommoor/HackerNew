@@ -8,7 +8,6 @@ var hn = {
   endless_preload: 300,
 
   init: function(){
-
     hn.setPage();
     hn.styleElements();
     hn.replaceImages();
@@ -36,13 +35,12 @@ var hn = {
         hn.createQuickReply();
         break;
       default:
-              hn.createFilterMenu();
+        hn.createFilterMenu();
         $('html').addClass('news');
     }
   },
 
   styleElements: function(){
-
     $('input[type=submit]').addClass('btn');
   },
 
@@ -54,12 +52,10 @@ var hn = {
   },
 
   createProfileBubble: function(){
-
     $('body').append('<div id="profile-bubble"><em></em><div class="profile"></div></div>');
   },
 
   createQuickReply: function(){
-
     $('body').append('<div id="quick-reply"><em></em><div class="reply"><form><textarea></textarea><input type="submit" value="reply" class="btn" /></form></div></div>');
   },
 
@@ -79,7 +75,6 @@ var hn = {
   },
 
   refreshFilters: function(){
-
     var filters = hn.getStorage('filters');
     var $filters = '';
 
@@ -178,7 +173,6 @@ var hn = {
   },
 
   checkPageEnd: function(){
-
     // dont do anything if we're already loading the next page
     if (hn.endless_loading) return;
 
@@ -205,7 +199,6 @@ var hn = {
 
     // load next page
     $temp.load(url, function(){
-
       // find the first news title and jump up two levels to get news table body
       $temp = $temp.find('td.title:first-child').parent().parent().html();
 
@@ -250,15 +243,15 @@ var hn = {
 
       // load real reply form from server, modify and submit
       $temp.load(url, function(){
-
         $temp.find('textarea').val($textarea.val());
-        $temp.find('form').submit();
+        var $form = $temp.find('form');
+        document.body.appendChild($form[0]);
+        $form.submit();
       });
     });
   },
 
   toggleReplies: function(ev){
-
     var $button = $(this);
 
     if ($button.hasClass('collapsed')) {
@@ -290,15 +283,14 @@ var hn = {
         return false;
       }
     });
-        $button.parents("td.default").children("span.comment, p").hide();
 
+    $button.parents("td.default").children("span.comment, p").hide();
     $button.text("[+]")
-           .addClass('collapsed')
-           .data('uniq', uniq);
+      .addClass('collapsed')
+      .data('uniq', uniq);
   },
 
   loadUserDetails: function(ev){
-
     var $temp = $('<div/>');
     var url = $(this).attr('href') + ' table';
     var username = $(this).text();
@@ -316,8 +308,7 @@ var hn = {
       var urlsWithIndices = twttr.txt.extractUrlsWithIndices($temp.html());
       var filtered = [];
 
-        for (var i = 0; i < urlsWithIndices.length; i++) {
-
+      for (var i = 0; i < urlsWithIndices.length; i++) {
         // ensure urls are properly formed
         if(!urlsWithIndices[i].url.match(/^https?:\/\//gi)){
           urlsWithIndices[i].url = 'http://' + urlsWithIndices[i].url;
@@ -327,7 +318,7 @@ var hn = {
         if(!urlsWithIndices[i].url.match(/ycombinator/gi)){
           filtered.push(urlsWithIndices[i].url);
         }
-        };
+      };
 
       if (filtered.length) {
         hn.renderProfileBubble([], filtered, username, karma);
@@ -344,7 +335,6 @@ var hn = {
   },
 
   loadUserProfiles: function(urls, callback){
-
     var name = 'ident' + (new Date).getTime();
     var port = chrome.extension.connect({name: name});
     port.postMessage({urls: urls});
@@ -353,9 +343,7 @@ var hn = {
   },
 
   renderProfileBubble: function(identities, urls, username, karma){
-
     if (identities || urls || karma) {
-
       identities = identities || [];
       urls = urls || [];
 
@@ -420,14 +408,12 @@ var hn = {
   },
 
   closeQuickReply: function(ev){
-
     if (!$(ev.target).parents('#profile-bubble').length && ev.target != $('#profile-bubble')[0]) {
       $('#profile-bubble').fadeOut(200);
     }
   },
 
   augmentStories: function(){
-
     var follows = hn.getStorage("follows");
 
     $('td.title').not('.hn-processed').each(function(){
@@ -468,7 +454,6 @@ var hn = {
   },
 
   augmentComments: function(){
-
     $('span.comment').each(function(){
       var $wrapper = $(this).parent();
       var $meta = $wrapper.find('span.comhead');
@@ -481,7 +466,6 @@ var hn = {
   },
 
   updateHighlights: function() {
-
     var follows = hn.getStorage("follows");
 
     $('span.comment').each(function(){
@@ -500,7 +484,6 @@ var hn = {
   },
 
   filterStories: function(){
-
     var count = 0;
 
     $('td.title a').each(function(){
@@ -538,7 +521,6 @@ var hn = {
   },
 
   checkFiltered: function(title, domain, username){
-
     var filters = hn.getStorage('filters');
     var filter;
 

@@ -23,13 +23,19 @@ https://chrome.google.com/webstore/detail/lgoghlndihpmbbgmbpjohilcphbfhddd
 * Social sharing for Twitter, Facebook, Google+, Buffer
 
 
+## Development
+
+This code is old, it's not good, there are jQuery selectors all over the place and
+It's probably best rebuilt from scratch. You've been warned :)
+
+
 ## License
 
 HackerNew is released under the MIT license. It is simple and easy to understand and places almost no restrictions on what you can do with it.
 [More Information](http://en.wikipedia.org/wiki/MIT_License)
 
 
-## Credits 
+## Credits
 
 * Uses jQuery hover intent plugin by [Brian Cherne](http://cherne.net/brian/resources/jquery.hoverIntent.html)
 * Entypo pictograms by [Daniel Bruce](http://www.entypo.com)
