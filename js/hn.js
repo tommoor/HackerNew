@@ -162,10 +162,22 @@ var hn = {
 
     hn.endless_loading = true;
 
+ 		var MORE_SEL =
+        'td.title a[href^="/x"]'     //THREAD
+      +',td.title a[href^="news?p="]' //ARTICLE
+      +',td.title a[href^="newest?next="]' //HOME
+      +',td.title a[href^="saved"]'   //MY SAVED
+      +',td.title a[href^="threads"]' //USER COMMENTS
+      //over?points=10&p=2
+      +',td.title a[href^="over?points="][href*="&p="]'
+      //submitted?id=philjackson&next=3274953&n=31
+      +',td.title a[href^="submitted?id="][href*="&next="][href*="&n="]'
+      ;
+    
     var $temp = $('<div/>');
 
     // find the 'More' link and add a loading class
-    var $more = $('td.title a[href^="/x"]').last().addClass('endless_loading');
+		var $more = $(MORE_SEL).last().addClass('endless_loading');
     var $morerow = $more.parent().parent();
 
     // extract the URL for the next page
@@ -174,7 +186,9 @@ var hn = {
     // load next page
     $temp.load(url, function(){
       // find the first news title and jump up two levels to get news table body
-      $temp = $temp.find('td.title:first-child').parent().parent().html();
+      $temp = (  $temp.find('td.title:first-child').parent().parent().html()
+              || $temp.find('.comhead, ' + MORE_SEL).closest('table').closest('tr')
+              );
 
       // add extra options to stories before appending to DOM
       $morerow.after($temp);
