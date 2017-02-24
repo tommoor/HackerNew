@@ -18,9 +18,6 @@ https://chrome.google.com/webstore/detail/lgoghlndihpmbbgmbpjohilcphbfhddd
 * Quick inline replies
 * Quick profiles with social network info when hovering over usernames
 * Filtering of stories based on terms and phrases / domain or username
-* Endless scrolling
-* Collapsible comment threads
-* Social sharing for Twitter, Facebook, Google+, Buffer
 
 
 ## Development
