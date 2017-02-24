@@ -1,14 +1,14 @@
 {
-	"name": "HackerNew",
-	"version": "1.2.3",
-	"description": "The best Hacker News extension, making HN quicker and more useful since 2012.",
-	"background": {
-	  "page": "background.html"
-	},
-	"icons": {
-		"48": "images/icon-48.png",
-		"128": "images/icon-128.png"
-	},
+  "name": "HackerNew",
+  "version": "1.3.0",
+  "description": "The best Hacker News extension, making HN quicker and more useful since 2012.",
+  "background": {
+    "page": "background.html"
+  },
+  "icons": {
+    "48": "images/icon-48.png",
+    "128": "images/icon-128.png"
+  },
   "manifest_version": 2,
   "web_accessible_resources": [
     "images/karma.png",
@@ -21,25 +21,25 @@
     "images/arrow-up.png",
     "images/arrow-down.png"
   ],
-	"content_scripts": [
-	    {
+  "content_scripts": [
+    {
       "matches": [
-			  "http://news.ycombinator.com/*", 
-			  "http://news.ycombinator.org/*", 
-			  "http://hackerne.ws/*",
-			  "https://news.ycombinator.com/*"
+        "http://news.ycombinator.com/*",
+        "http://news.ycombinator.org/*",
+        "http://hackerne.ws/*",
+        "https://news.ycombinator.com/*"
       ],
       "css": [
-			  "forms.css", 
-			  "hn.css"
+        "forms.css",
+        "hn.css"
       ],
       "js": [
-			  "js/libs/jquery-1.7.1.min.js",
-			  "js/libs/jquery.hoverIntent.js",
-			  "js/libs/jquery.autogrow.js",
-			  "js/libs/twitter.text.js",
-			  "js/hn.js"
-		  ]
-	    }
-	]
+        "js/libs/jquery-1.7.1.min.js",
+        "js/libs/jquery.hoverIntent.js",
+        "js/libs/jquery.autogrow.js",
+        "js/libs/twitter.text.js",
+        "js/hn.js"
+      ]
+    }
+  ]
 }
