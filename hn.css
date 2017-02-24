@@ -1,11 +1,11 @@
 body {
-	background: rgba(0,0,0,0.05);
-	margin: 0;
+  background: rgba(0,0,0,0.05);
+  margin: 0;
 }
 
-table td,	
+table td,
 table {
-	background: #fff;
+  background: #fff;
 }
 
 
@@ -26,245 +26,244 @@ input[type=\"submit\"],
 .comhead,
 .comment,
 .dead {
-	font-family: Verdana, Geneva, sans-serif !important;
+  font-family: Verdana, Geneva, sans-serif !important;
 }
 
 /*********** Header ******************/
 
 table table a[href='http://ycombinator.com'] img {
-	padding-left: 8px;
-	padding-right: 4px;
+  padding-left: 8px;
+  padding-right: 4px;
 }
 
 .pagetop {
-	text-transform: uppercase;
-	font-size: 11px !important;
+  text-transform: uppercase;
+  font-size: 11px !important;
 }
 
 .pagetop b {
-	padding-right: 10px;
+  padding-right: 10px;
 }
 
 .pagetop a,
 .pagetop a:link,
 .pagetop a:visited {
-	color: #444 !important;
+  color: #444 !important;
 }
 
 .pagetop .topsel a,
-.pagetop .topsel a:link, 
+.pagetop .topsel a:link,
 .pagetop .topsel a:visited {
-	color: #000 !important;
-	font-weight: bold;
+  color: #000 !important;
+  font-weight: bold;
 }
 
 .pagetop a:hover {
-	color: #000 !important;
+  color: #000 !important;
 }
 
 
 /*********** Footer ******************/
 
 .footer {
-	position: fixed;
-	bottom: -82px;
-	left: 0;
-	width: 100%;
-	background: rgba(255,255,255,0.9);
-	
-	-webkit-transition: bottom 1s;
+  position: fixed;
+  bottom: -70px;
+  left: 0;
+  width: 100%;
+  background: rgba(255,255,255,0.95);
+  -webkit-transition: bottom 1s;
 }
 
 .footer:hover {
-	bottom: 0;
+  bottom: 0;
 }
 
 .footer td {
-	background: transparent;
-	width: 100%;
+  background: transparent;
+  width: 100%;
 }
 
 .footer img {
-	display: none;
+  display: none;
 }
 
 .footer form {
-	color: transparent;
-	font-size: 0;
-	margin: 0;
+  color: transparent;
+  font-size: 0;
+  margin: 0;
 }
 
 .footer input {
-	width: 55%;
+  width: 55%;
 }
 
 
 /*********** Filters *****************/
 
 #menu-filters {
-	cursor: pointer;
-	position: relative;
+  cursor: pointer;
+  position: relative;
 }
 
 #menu-filters .count {
-	position: relative;
-	padding: 1px 3px;
-	right: 4px;
-	top: -1px;
-	background: #2279B2;
-	font-size: 10px;
-	color: #fff;
-	border-radius: 2px;
-	border-bottom: 1px solid #12405E;
+  position: relative;
+  padding: 1px 3px;
+  right: 4px;
+  top: -1px;
+  background: #2279B2;
+  font-size: 10px;
+  color: #fff;
+  border-radius: 2px;
+  border-bottom: 1px solid #12405E;
 }
 
 #filter-wrapper {
-	position: relative;
-	display: none;
+  position: relative;
+  display: none;
 }
 
 #filter-wrapper p.empty {
-	position: absolute;
-	top: 46px;
-	left: 20px;
-	line-height: 1.2;
-	text-shadow: 0 1px 0 #fff;
-	margin: 0;
+  position: absolute;
+  top: 46px;
+  left: 20px;
+  line-height: 1.2;
+  text-shadow: 0 1px 0 #fff;
+  margin: 0;
 }
 
 #filter-wrapper input {
-	position: absolute;
-	top: 38px;
-	right: 20px;
-	line-height: 1.2;
+  position: absolute;
+  top: 38px;
+  right: 20px;
+  line-height: 1.2;
 }
 
 #filter-wrapper em {
-	position: absolute;
-	top: 10px;
-	right: 188px;
-	width: 0;
-	height: 0;
-	border-left: 10px solid transparent;
-	border-right: 10px solid transparent;
-	border-bottom: 10px solid #f5f5f5;
+  position: absolute;
+  top: 10px;
+  right: 188px;
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 10px solid #f5f5f5;
 }
 
 #current-filters {
-	list-style: none;
-	margin: 20px 0 0 0;
-	padding: 20px 250px 10px 20px;	
-	background: #f5f5f5;
-	border-bottom: 3px solid #ddd;
-	min-height: 38px;
+  list-style: none;
+  margin: 20px 0 0 0;
+  padding: 20px 250px 10px 20px;
+  background: #f5f5f5;
+  border-bottom: 3px solid #ddd;
+  min-height: 38px;
 }
 
 #current-filters li {
-	display: inline;
+  display: inline;
 }
 
 #current-filters li a {
-	display: inline-block;
-	padding: 4px 6px;
-	background: #2279B2;
-	color: #fff;
-	margin: 0 20px 10px 0;
-	border-radius: 3px;
-	border-bottom: 1px solid #12405E;
-	cursor: pointer;
+  display: inline-block;
+  padding: 4px 6px;
+  background: #2279B2;
+  color: #fff;
+  margin: 0 20px 10px 0;
+  border-radius: 3px;
+  border-bottom: 1px solid #12405E;
+  cursor: pointer;
 }
 
 #current-filters li a:active,
 #current-filters li:hover a {
-	background: #BF3838;
-	border-bottom: 1px solid #6F2020;
+  background: #BF3838;
+  border-bottom: 1px solid #6F2020;
 }
 
 
 /*********** Code Comments ***********/
 
 pre {
-	background: #f1f1f1;
-	padding: 20px 20px 20px 0 !important;
-	color: #333;
-	border-radius: 3px;
+  background: #f1f1f1;
+  padding: 20px 20px 20px 0 !important;
+  color: #333;
+  border-radius: 3px;
 }
 
 
 /*********** News Listings ***********/
 
 body > center > table {
-	margin: 0 -20px;
-	padding: 20px;
+  margin: 0 -20px;
+  padding: 20px;
 }
 
 td.title {
-	padding: 8px 0 0px;
-	position: relative;
-	background: none;
+  padding: 8px 0 0px;
+  position: relative;
+  background: none;
 }
 
 td.title a {
-	font-size: 18px;
-	letter-spacing: -1px;
-	color: rgb(0, 105, 173);
+  font-size: 17px;
+  letter-spacing: -1px;
+  color: rgb(0, 105, 173);
 }
 
 td.title a:hover {
-	color: #2991D6;
+  color: #2991D6;
 }
 
 
 td.title a:visited {
-	color: #87C1E8;
+  color: #87C1E8;
 }
 
 td.title .comhead a {
-	color: #444;
-	font-size: 8pt;
+  color: #444;
+  font-size: 8pt;
 }
 
 td.title:first-child {
-	font-size: 20px;
-	color: #bbb;
-	min-width: 33px;
+  font-size: 20px;
+  color: #bbb;
+  min-width: 33px;
 }
 
 td.subtext {
-	font-size: 10px;
+  font-size: 10px;
 }
 
 td.subtext a:hover {
-	color: #444;
+  color: #444;
 }
 
 
 /*********** Vote Arrows ****************/
 
 tr>td {
-	min-width: 20px;
+  min-width: 20px;
 }
 
 tr>td>center>a {
-	padding: 0;
-	vertical-align: bottom;
-	opacity: 0.8;
-	position: relative;
-	top: 4px;
+  padding: 0;
+  vertical-align: bottom;
+  opacity: 0.8;
+  position: relative;
+  top: 4px;
 }
 
 tr>td>center>a>img {
-	width: 10px;
-	height: 10px;
+  width: 10px;
+  height: 10px;
 }
 
 tr>td>center>a:hover {
-	opacity: 1;
+  opacity: 1;
 }
 
 /* Fix reply indentation on comments page */
 html.item tr>td>center>a {
-	padding: 0;
+  padding: 0;
 }
 
 
@@ -272,361 +271,362 @@ html.item tr>td>center>a {
 /*********** Story Share Menu ***********/
 
 .share-story {
-	cursor: pointer;
+  cursor: pointer;
 }
 
 .share-story:hover {
-	text-decoration: underline;
+  text-decoration: underline;
 }
 
 .sharing-options {
-	display: none;
-	padding: 10px 0;
+  display: none;
+  padding: 10px 0;
 }
 
 .sharing-options iframe {
-	margin-right: 10px;
+  margin-right: 10px;
 }
 
 
 /*********** Story Filter Menu **********/
 
 td.title .filter-menu {
-	position: absolute;
-	top: 8px;
-	right: 0;
+  position: absolute;
+  top: 8px;
+  right: 0;
 }
 
 td.title .filter-menu span {
-	display: block;
-	width: 20px;
-	height: 20px;
-	font-size: 18px;
-	color: rgba(0,0,0,0.05);
-	text-align: center;
-	line-height: 20px;
-	padding-right: 10px;
-	cursor: pointer;
-	-webkit-transition: all 0.2s ease-in-out;
+  display: block;
+  width: 20px;
+  height: 20px;
+  font-size: 18px;
+  color: rgba(0,0,0,0.05);
+  text-align: center;
+  line-height: 20px;
+  padding-right: 10px;
+  cursor: pointer;
+  -webkit-transition: all 0.2s ease-in-out;
 }
 
 td.title:hover .filter-menu span {
-	color: rgba(0,0,0,0.5);
-	background: #fff;
+  color: rgba(0,0,0,0.5);
+  background: #fff;
 }
 
 td.title .filter-menu ul {
-	list-style: none;
-	padding: 0;
-	margin: 0;
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
 td.title .filter-menu .quick-filter {
-	position: absolute;
-	left: -9000px;
-	background: rgba(0,0,0,0.9);
-	box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-	z-index: 100;
-	width: 170px;
-	top: 25px;
+  position: absolute;
+  left: -9000px;
+  background: rgba(0,0,0,0.9);
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  z-index: 100;
+  width: 170px;
+  top: 25px;
 }
 
 td.title .filter-menu:hover .quick-filter {
-	left: -74px;
+  left: -74px;
 }
 
 td.title .filter-menu .quick-filter li a {
-	font-size: 12px;
-	color: #fff;
-	display: block;
-	padding: 10px;
-	letter-spacing: 0;
-	cursor: pointer;
-	border-bottom: 1px solid #222;
+  font-size: 12px;
+  color: #fff;
+  display: block;
+  padding: 10px;
+  letter-spacing: 0;
+  cursor: pointer;
+  border-bottom: 1px solid #222;
+  text-decoration: none;
 }
 
 td.title .filter-menu .quick-filter li:hover a {
-	background: #BF3838;
-	border-bottom: 1px solid #6F2020;
+  background: #BF3838;
+  border-bottom: 1px solid #6F2020;
 }
 
 td.title .filter-menu .quick-filter em {
-	position: absolute;
-	top: -6px;
-	left: 78px;
-	width: 0;
-	height: 0;
-	border-left: 6px solid transparent;
-	border-right: 6px solid transparent;
-	border-bottom: 6px solid rgba(0,0,0,0.9);
+  position: absolute;
+  top: -6px;
+  left: 78px;
+  width: 0;
+  height: 0;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-bottom: 6px solid rgba(0,0,0,0.9);
 }
 
 /*********** Endless Loading **********/
 
 a.endless_loading {
-	display: block;
-	height: 0;
-	padding-top: 38px;
-	overflow: hidden;
-	background: url(chrome-extension://__MSG_@@extension_id__/images/loading-light.gif) no-repeat center center;
+  display: block;
+  height: 0;
+  padding-top: 38px;
+  overflow: hidden;
+  background: url(chrome-extension://__MSG_@@extension_id__/images/loading-light.gif) no-repeat center center;
 }
 
 
 /*********** Story Page ***************/
 
 form textarea {
-	width: 100%;
+  width: 100%;
 }
 
 .item .filter-menu {
-	display: none;
+  display: none;
 }
 
 .item form textarea {
-	margin: 0 0 -10px;
+  margin: 0 0 -10px;
 }
 
 .item form {
-	margin: 0;
+  margin: 0;
 }
 
 .item table tr td table tr td form:first-child textarea {
-	min-width: 600px;
+  min-width: 600px;
 }
 
 a.highlighted {
-	margin: -2px 0;
-	padding: 2px 3px;
-	background: #ed7233;
-	color: #fff !important;
-	border-radius: 2px;
+  margin: -2px 0;
+  padding: 2px 3px;
+  background: #ed7233;
+  color: #fff !important;
+  border-radius: 2px;
 }
 
 font u a:link,
 .comment a:link {
-	color: #2279B2;
+  color: #2279B2;
 }
 
 font u a:visited,
 .comment a:visited {
-	color: #87C1E8;
+  color: #87C1E8;
 }
 
 a.toggle-replies {
-	cursor: pointer;
+  cursor: pointer;
 }
 
 a.toggle-replies:hover {
-	text-decoration: underline;
+  text-decoration: underline;
 }
 
 td.default:hover a.toggle-replies {
-	opacity: 1;
+  opacity: 1;
 }
 
 /*********** Inline Replies ***********/
 
 #quick-reply {
-	width: 100%;
-	display: none;
+  width: 100%;
+  display: none;
 }
 
 #quick-reply textarea {
-	height: 80px !important;
+  height: 80px !important;
 }
 
 #quick-reply input[type=submit] {
-	margin-left: 0;
-	margin-top: 20px;
+  margin-left: 0;
+  margin-top: 20px;
 }
 
 #quick-reply .loading {
-	min-height: 38px;
-	background: url(chrome-extension://__MSG_@@extension_id__/images/loading-light.gif) no-repeat center center;
+  min-height: 38px;
+  background: url(chrome-extension://__MSG_@@extension_id__/images/loading-light.gif) no-repeat center center;
 }
 
 
 /*********** Profile Bubble ***********/
 
 #profile-bubble {
-	position: relative;
-	display: none;
-	background: rgba(0,0,0,0.9);
-	padding: 10px;
-	box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-	z-index: 100;
-	width: 150px;
+  position: relative;
+  display: none;
+  background: rgba(0,0,0,0.9);
+  padding: 10px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  z-index: 100;
+  width: 150px;
 }
 
 #profile-bubble em {
-	position: absolute;
-	top: -6px;
-	left: 78px;
-	width: 0;
-	height: 0;
-	border-left: 6px solid transparent;
-	border-right: 6px solid transparent;
-	border-bottom: 6px solid rgba(0,0,0,0.9);
+  position: absolute;
+  top: -6px;
+  left: 78px;
+  width: 0;
+  height: 0;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-bottom: 6px solid rgba(0,0,0,0.9);
 }
 
 #profile-bubble a {
-	color: #fff;
-	display: block;
-	padding: 5px 0;
-	overflow: hidden;
+  color: #fff;
+  display: block;
+  padding: 5px 0;
+  overflow: hidden;
 }
 
 #profile-bubble .loading {
-	min-height: 38px;
-	background: url(chrome-extension://__MSG_@@extension_id__/images/loading.gif) no-repeat center center;
+  min-height: 38px;
+  background: url(chrome-extension://__MSG_@@extension_id__/images/loading.gif) no-repeat center center;
 }
 
 #profile-bubble a:hover .icon-label {
-	text-decoration: underline;
+  text-decoration: underline;
 }
 
 #profile-bubble .username {
-	color: #aaa;
-	font-size: 11px;
-	display: block;
-	margin-left: 26px;
+  color: #aaa;
+  font-size: 11px;
+  display: block;
+  margin-left: 26px;
 }
 
 #profile-bubble ul {
-	padding: 0;
-	margin: 0;
-	list-style: none;
+  padding: 0;
+  margin: 0;
+  list-style: none;
 }
 
 #profile-bubble .follow-user,
 #profile-bubble .unfollow-user {
-	cursor: pointer;
-	margin: 0 -10px 5px -10px;
-	padding: 5px 10px;
+  cursor: pointer;
+  margin: 0 -10px 5px -10px;
+  padding: 5px 10px;
 }
 
 #profile-bubble .follow-user:hover,
 #profile-bubble .unfollow-user:hover {
-	background: #000;
+  background: #000;
 }
 
 /*********** Ident Icons ***********/
 
 .icon {
-	width: 16px;
-	height: 16px;
-	display: inline-block;
-	float: left;
-	background-color: white;
-	border-radius: 2px;
-	margin-top: 2px;
-	margin-right: 10px;
-	background: #ffffff url(chrome-extension://__MSG_@@extension_id__/images/icons.png) no-repeat top left;
-	border-radius: 3px;
+  width: 16px;
+  height: 16px;
+  display: inline-block;
+  float: left;
+  background-color: white;
+  border-radius: 2px;
+  margin-top: 2px;
+  margin-right: 10px;
+  background: #ffffff url(chrome-extension://__MSG_@@extension_id__/images/icons.png) no-repeat top left;
+  border-radius: 3px;
 }
 
-.icon-karma { background: url(chrome-extension://__MSG_@@extension_id__/images/karma.png) no-repeat top left; background-size: 100%;} 
-.icon-follow { background: url(chrome-extension://__MSG_@@extension_id__/images/follow.png) no-repeat top left; background-size: 100%;} 
-.icon-unfollow { background: url(chrome-extension://__MSG_@@extension_id__/images/unfollow.png) no-repeat top left; background-size: 100%;} 
-.icon-12secondstv { background-position: 0 0; } 
-.icon-43people { background-position: 0 -17px; } 
-.icon-43places { background-position: 0 -34px; } 
-.icon-43things { background-position: 0 -51px; } 
-.icon-backnetwork { background-position: 0 -68px; } 
-.icon-backtype { background-position: 0 -85px; } 
-.icon-barcampbrighton3 { background-position: 0 -102px; } 
-.icon-barcamplondon5 { background-position: 0 -119px; } 
-.icon-blipfm { background-position: 0 -136px; } 
-.icon-blippr { background-position: 0 -153px; } 
-.icon-bliptv { background-position: 0 -170px; } 
-.icon-blogger { background-position: 0 -187px; } 
-.icon-blogspot { background-position: 0 -204px; } 
-.icon-brightkite { background-position: 0 -221px; } 
-.icon-claimid { background-position: 0 -238px; } 
-.icon-cliqset { background-position: 0 -255px; } 
-.icon-cocomment { background-position: 0 -272px; } 
-.icon-corkd { background-position: 0 -289px; } 
-.icon-dconstruct08 { background-position: 0 -306px; } 
-.icon-delicious { background-position: 0 -323px; } 
-.icon-digg { background-position: 0 -340px; } 
-.icon-disqus { background-position: 0 -357px; } 
-.icon-djangopeople { background-position: 0 -374px; } 
-.icon-dopplr { background-position: 0 -391px; } 
-.icon-edenbee { background-position: 0 -408px; } 
-.icon-emberapp { background-position: 0 -425px; } 
-.icon-facebook { background-position: 0 -442px; } 
-.icon-ffffound { background-position: 0 -459px; } 
-.icon-flickr { background-position: 0 -476px; } 
-.icon-fotb08 { background-position: 0 -493px; } 
-.icon-fotolog { background-position: 0 -510px; } 
-.icon-friendfeed { background-position: 0 -527px; } 
-.icon-getsatisfaction { background-position: 0 -544px; } 
-.icon-github { background-position: 0 -561px; } 
-.icon-google { background-position: 0 -578px; } 
-.icon-googlereader { background-position: 0 -595px; } 
-.icon-hi5 { background-position: 0 -612px; } 
-.icon-huffduffer { background-position: 0 -629px; } 
-.icon-identica { background-position: 0 -646px; } 
-.icon-jaiku { background-position: 0 -663px; } 
-.icon-joost { background-position: 0 -680px; } 
-.icon-jpg { background-position: 0 -697px; } 
-.icon-krop { background-position: 0 -714px; } 
-.icon-lastfm { background-position: 0 -731px; } 
-.icon-linkedin { background-position: 0 -748px; } 
-.icon-livejournal { background-position: 0 -765px; } 
-.icon-madgexlab { background-position: 0 -782px; } 
-.icon-mashed08 { background-position: 0 -799px; } 
-.icon-meetup { background-position: 0 -816px; } 
-.icon-microformatsorg { background-position: 0 -833px; } 
-.icon-mybloglog { background-position: 0 -850px; } 
-.icon-mynameise { background-position: 0 -867px; } 
-.icon-myopenid { background-position: 0 -884px; } 
-.icon-myspace { background-position: 0 -901px; } 
-.icon-mytvshows { background-position: 0 -918px; } 
-.icon-netvibes { background-position: 0 -935px; } 
-.icon-newsvine { background-position: 0 -952px; } 
-.icon-odeo { background-position: 0 -969px; } 
-.icon-orkut { background-position: 0 -986px; } 
-.icon-picasa { background-position: 0 -1003px; } 
-.icon-plaxo { background-position: 0 -1020px; } 
-.icon-plazes { background-position: 0 -1037px; } 
-.icon-plurk { background-position: 0 -1054px; } 
-.icon-pownce { background-position: 0 -1071px; } 
-.icon-profilactic { background-position: 0 -1088px; } 
-.icon-readernaut { background-position: 0 -1105px; } 
-.icon-seesmic { background-position: 0 -1122px; } 
-.icon-slideshare { background-position: 0 -1139px; } 
-.icon-smugmug { background-position: 0 -1156px; } 
-.icon-soup { background-position: 0 -1173px; } 
-.icon-stumbleupon { background-position: 0 -1190px; } 
-.icon-technorati { background-position: 0 -1207px; } 
-.icon-threadless { background-position: 0 -1224px; } 
-.icon-timespeople { background-position: 0 -1241px; } 
-.icon-tumblr { background-position: 0 -1258px; } 
-.icon-twitpic { background-position: 0 -1275px; } 
-.icon-twitter { background-position: 0 -1292px; } 
-.icon-upcoming { background-position: 0 -1309px; } 
-.icon-ustream { background-position: 0 -1326px; } 
-.icon-viddler { background-position: 0 -1343px; } 
-.icon-vimeo { background-position: 0 -1360px; } 
-.icon-vox { background-position: 0 -1377px; } 
-.icon-website { background-position: 0 -1394px; } 
-.icon-windowslive { background-position: 0 -1411px; } 
-.icon-wordpress { background-position: 0 -1428px; } 
-.icon-xing { background-position: 0 -1445px; } 
-.icon-yahoo { background-position: 0 -1462px; } 
-.icon-yelp { background-position: 0 -1479px; } 
-.icon-yiid { background-position: 0 -1496px; } 
+.icon-karma { background: url(chrome-extension://__MSG_@@extension_id__/images/karma.png) no-repeat top left; background-size: 100%;}
+.icon-follow { background: url(chrome-extension://__MSG_@@extension_id__/images/follow.png) no-repeat top left; background-size: 100%;}
+.icon-unfollow { background: url(chrome-extension://__MSG_@@extension_id__/images/unfollow.png) no-repeat top left; background-size: 100%;}
+.icon-12secondstv { background-position: 0 0; }
+.icon-43people { background-position: 0 -17px; }
+.icon-43places { background-position: 0 -34px; }
+.icon-43things { background-position: 0 -51px; }
+.icon-backnetwork { background-position: 0 -68px; }
+.icon-backtype { background-position: 0 -85px; }
+.icon-barcampbrighton3 { background-position: 0 -102px; }
+.icon-barcamplondon5 { background-position: 0 -119px; }
+.icon-blipfm { background-position: 0 -136px; }
+.icon-blippr { background-position: 0 -153px; }
+.icon-bliptv { background-position: 0 -170px; }
+.icon-blogger { background-position: 0 -187px; }
+.icon-blogspot { background-position: 0 -204px; }
+.icon-brightkite { background-position: 0 -221px; }
+.icon-claimid { background-position: 0 -238px; }
+.icon-cliqset { background-position: 0 -255px; }
+.icon-cocomment { background-position: 0 -272px; }
+.icon-corkd { background-position: 0 -289px; }
+.icon-dconstruct08 { background-position: 0 -306px; }
+.icon-delicious { background-position: 0 -323px; }
+.icon-digg { background-position: 0 -340px; }
+.icon-disqus { background-position: 0 -357px; }
+.icon-djangopeople { background-position: 0 -374px; }
+.icon-dopplr { background-position: 0 -391px; }
+.icon-edenbee { background-position: 0 -408px; }
+.icon-emberapp { background-position: 0 -425px; }
+.icon-facebook { background-position: 0 -442px; }
+.icon-ffffound { background-position: 0 -459px; }
+.icon-flickr { background-position: 0 -476px; }
+.icon-fotb08 { background-position: 0 -493px; }
+.icon-fotolog { background-position: 0 -510px; }
+.icon-friendfeed { background-position: 0 -527px; }
+.icon-getsatisfaction { background-position: 0 -544px; }
+.icon-github { background-position: 0 -561px; }
+.icon-google { background-position: 0 -578px; }
+.icon-googlereader { background-position: 0 -595px; }
+.icon-hi5 { background-position: 0 -612px; }
+.icon-huffduffer { background-position: 0 -629px; }
+.icon-identica { background-position: 0 -646px; }
+.icon-jaiku { background-position: 0 -663px; }
+.icon-joost { background-position: 0 -680px; }
+.icon-jpg { background-position: 0 -697px; }
+.icon-krop { background-position: 0 -714px; }
+.icon-lastfm { background-position: 0 -731px; }
+.icon-linkedin { background-position: 0 -748px; }
+.icon-livejournal { background-position: 0 -765px; }
+.icon-madgexlab { background-position: 0 -782px; }
+.icon-mashed08 { background-position: 0 -799px; }
+.icon-meetup { background-position: 0 -816px; }
+.icon-microformatsorg { background-position: 0 -833px; }
+.icon-mybloglog { background-position: 0 -850px; }
+.icon-mynameise { background-position: 0 -867px; }
+.icon-myopenid { background-position: 0 -884px; }
+.icon-myspace { background-position: 0 -901px; }
+.icon-mytvshows { background-position: 0 -918px; }
+.icon-netvibes { background-position: 0 -935px; }
+.icon-newsvine { background-position: 0 -952px; }
+.icon-odeo { background-position: 0 -969px; }
+.icon-orkut { background-position: 0 -986px; }
+.icon-picasa { background-position: 0 -1003px; }
+.icon-plaxo { background-position: 0 -1020px; }
+.icon-plazes { background-position: 0 -1037px; }
+.icon-plurk { background-position: 0 -1054px; }
+.icon-pownce { background-position: 0 -1071px; }
+.icon-profilactic { background-position: 0 -1088px; }
+.icon-readernaut { background-position: 0 -1105px; }
+.icon-seesmic { background-position: 0 -1122px; }
+.icon-slideshare { background-position: 0 -1139px; }
+.icon-smugmug { background-position: 0 -1156px; }
+.icon-soup { background-position: 0 -1173px; }
+.icon-stumbleupon { background-position: 0 -1190px; }
+.icon-technorati { background-position: 0 -1207px; }
+.icon-threadless { background-position: 0 -1224px; }
+.icon-timespeople { background-position: 0 -1241px; }
+.icon-tumblr { background-position: 0 -1258px; }
+.icon-twitpic { background-position: 0 -1275px; }
+.icon-twitter { background-position: 0 -1292px; }
+.icon-upcoming { background-position: 0 -1309px; }
+.icon-ustream { background-position: 0 -1326px; }
+.icon-viddler { background-position: 0 -1343px; }
+.icon-vimeo { background-position: 0 -1360px; }
+.icon-vox { background-position: 0 -1377px; }
+.icon-website { background-position: 0 -1394px; }
+.icon-windowslive { background-position: 0 -1411px; }
+.icon-wordpress { background-position: 0 -1428px; }
+.icon-xing { background-position: 0 -1445px; }
+.icon-yahoo { background-position: 0 -1462px; }
+.icon-yelp { background-position: 0 -1479px; }
+.icon-yiid { background-position: 0 -1496px; }
 .icon-youtube { background-position: 0 -1513px; }
 
 
 
 /* Smaller than standard 960 (devices and browsers) */
 @media only screen and (max-width: 959px) {
-	
-	body > center > table {
-		margin: 0;
-		width: 100%;
-	}
-	
+
+  body > center > table {
+    margin: 0;
+    width: 100%;
+  }
+
 }
