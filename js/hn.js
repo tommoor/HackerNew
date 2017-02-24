@@ -31,7 +31,7 @@ var hn = {
       case '/item':
       case '/threads':
         $('html').addClass('item');
-        hn.augmentComments();
+        hn.updateHighlights();
         hn.createQuickReply();
         break;
       default:
@@ -78,7 +78,7 @@ var hn = {
     var filters = hn.getStorage('filters');
     var $filters = '';
 
-    for(var i=0, l=filters.length; i < l; i++){
+    for (var i=0, l=filters.length; i < l; i++){
       $filters += '<li><a class="filter remove" data-filter="'+filters[i]+'" title="Remove filter">'+filters[i]+'</a></li>';
     }
 
@@ -138,38 +138,12 @@ var hn = {
 
     $('textarea').first().autogrow();
 
-    $('.toggle-replies').click(hn.toggleReplies);
-
     // slice removes the first user, which is always ourselves
     $('a[href^=user]').slice(1).hoverIntent(hn.loadUserDetails, function(){});
     $('a[href^=reply]').click(hn.quickReply);
 
     $(document).click(hn.closeQuickReply);
     $(document).scroll(hn.checkPageEnd);
-  },
-
-  shareStory: function(element, url, title){
-    var $point = $(element);
-    var url_encoded = encodeURIComponent(url);
-
-    // remove sharing options
-    if ($point.hasClass('sharing')) {
-      $point.next().remove();
-      $point.text('share')
-            .removeClass('sharing');
-      return;
-    }
-
-    // add sharing options
-    $point.addClass('sharing');
-    $point.after('<div class="sharing-options"><iframe src="//platform.twitter.com/widgets/tweet_button.html?url='+url_encoded+'&text='+title+'&count=vertical" style="width:55px; height:62px; border:none;" scrolling="no" frameborder="0" ></iframe>'+
-    '<iframe src="//www.facebook.com/plugins/like.php?href='+url_encoded+'&send=false&layout=box_count&width=55&show_faces=false&action=like&colorscheme=light&height=62" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:55px; height:62px;" allowTransparency="true"></iframe>'+
-    '<iframe src="http://widgets.bufferapp.com/button/?url='+url_encoded+'&text='+title+'&count=vertical" style="width: 55px; height: 62px; border:none;" scrolling="no" frameborder="0"></iframe>'+
-    '<g:plusone size="tall" href="'+url+'"></g:plusone><script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script></div>');
-
-    $point.text('actually, nah')
-          .next()
-          .fadeIn();
   },
 
   checkPageEnd: function(){
@@ -251,45 +225,6 @@ var hn = {
     });
   },
 
-  toggleReplies: function(ev){
-    var $button = $(this);
-
-    if ($button.hasClass('collapsed')) {
-      var uniq = $button.data('uniq');
-      $('.hidden-reply-' + uniq).show().removeClass();
-      $button.text('[-]')
-             .removeClass('collapsed');
-            $button.parent().parent().parent().children(".comment, p").show();
-      return;
-    }
-
-    var count = 0;
-    var parent = $button.parents('td.default').offset();
-    var uniq = (new Date()).getTime();
-
-    $('td.default').each(function(){
-      var offset = $(this).offset();
-
-      if (offset.top > parent.top) {
-        if (offset.left > parent.left) {
-          count++;
-
-          // find parent tr, several levels down
-          $(this).parent().parent().parent().parent().parent().hide().addClass('hidden-reply-' + uniq);
-          return true;
-        }
-
-        // gone too far
-        return false;
-      }
-    });
-
-    $button.parents("td.default").children("span.comment, p").hide();
-    $button.text("[+]")
-      .addClass('collapsed')
-      .data('uniq', uniq);
-  },
-
   loadUserDetails: function(ev){
     var $temp = $('<div/>');
     var url = $(this).attr('href') + ' table';
@@ -347,7 +282,7 @@ var hn = {
       identities = identities || [];
       urls = urls || [];
 
-      for(var i in urls) {
+      for (var i in urls) {
         identities.push({
           profileUrl: urls[i],
           spriteClass: 'icon-website',
@@ -442,27 +377,10 @@ var hn = {
       '</ul></div></div>');
 
       // add sharing and cache
-      $flag.after(' | <a href="http://webcache.googleusercontent.com/search?q=cache:'+ $link.attr('href') +'">cached</a> | <a class="share-story" href="#">share</a>');
-
-      $('.share-story', $details).click(function(ev){
-        ev.preventDefault();
-        hn.shareStory(this, $link.attr('href'), $link.text());
-      });
+      $flag.after(' | <a href="http://webcache.googleusercontent.com/search?q=cache:'+ $link.attr('href') +'">cached</a>');
 
       $(this).addClass('hn-processed');
     });
-  },
-
-  augmentComments: function(){
-    $('span.comment').each(function(){
-      var $wrapper = $(this).parent();
-      var $meta = $wrapper.find('span.comhead');
-
-      $meta.prepend('<a class="toggle-replies">[-]<a> ');
-
-    });
-
-    hn.updateHighlights();
   },
 
   updateHighlights: function() {
@@ -524,7 +442,7 @@ var hn = {
     var filters = hn.getStorage('filters');
     var filter;
 
-    for(var i=0, l=filters.length; i < l; i++){
+    for (var i=0, l=filters.length; i < l; i++){
 
       // filter domain
       if (filters[i].match(/^site:/)) {
