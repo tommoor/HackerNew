@@ -14,6 +14,7 @@ var hn = {
     hn.createSearchBar();
     hn.createProfileBubble();
     hn.augmentStories();
+    hn.updateHighlights();
     hn.bindEvents();
   },
 
@@ -360,15 +361,8 @@ var hn = {
 
       // extract story info
       var domain = $('.comhead', $title).text().replace(/\(|\)/g, '');
-      var $username = $('a', $details).first();
+      var $username = $('.hnuser', $details);
       var username = $username.text();
-
-      // following
-      if ($.inArray(username, follows) != -1) {
-        $username.addClass('highlighted');
-      } else {
-        $username.removeClass('highlighted');
-      }
 
       // add filtering options
       $link.before('<div class="filter-menu"><span>&#215;</span> <div class="quick-filter"><em></em> <ul>'+
@@ -386,10 +380,8 @@ var hn = {
   updateHighlights: function() {
     var follows = hn.getStorage("follows");
 
-    $('span.comment').each(function(){
-      var $wrapper = $(this).parent();
-      var $meta = $wrapper.find('span.comhead');
-      var $username = $('a', $meta).eq(2);
+    $('.hnuser').each(function(){
+      var $username = $(this);
       var username = $username.text();
 
       // following
