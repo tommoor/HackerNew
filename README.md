@@ -5,9 +5,8 @@ A chrome extension to add requested and missing functionality to hacker news inc
 
 ## Usage
 
-Install from the Chrome Webstore to receive automatic updates:
-
-https://chrome.google.com/webstore/detail/lgoghlndihpmbbgmbpjohilcphbfhddd
+| :warning:    | This extension is no longer maintained or available in the Chrome web store. [A fork is available](https://github.com/sullivanmatt/HackerNew-Reborn/) which has been [uploaded to the web store](https://chrome.google.com/webstore/detail/hackernew-reborn/fkdmbdmooimpbdjnpelijhbnlncfheak). |
+|---------------|:------------------------|
 
 
 ## Features
