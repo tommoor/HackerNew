@@ -163,10 +163,13 @@ var hn = {
 
     hn.endless_loading = true;
 
-    var $temp = $('<div/>');
+    var MORE_SEL = '.morelink'
+      , MORE_ROW = '.morespace, .morespace + tr'
+      , $temp = $('<div/>');
+
 
     // find the 'More' link and add a loading class
-    var $more = $('td.title a[href^="/x"]').last().addClass('endless_loading');
+		var $more = $(MORE_SEL).last().addClass('endless_loading');
     var $morerow = $more.parent().parent();
 
     // extract the URL for the next page
@@ -175,10 +178,17 @@ var hn = {
     // load next page
     $temp.load(url, function(){
       // find the first news title and jump up two levels to get news table body
-      $temp = $temp.find('td.title:first-child').parent().parent().html();
+      $temp = (   $temp.find('td.title:first-child').parent().parent().html()
+              // otherwise find a comhead or morelink and then table containing it,
+              // and a row containg the table
+              || ($temp.find('.comhead, ' + MORE_SEL).closest('table').closest('tr')
+                   // to what that finds, add a morespace from $temp to the collection
+                   .add('.morespace', $temp)
+                 )
+              );
 
       // add extra options to stories before appending to DOM
-      $morerow.after($temp);
+      $morerow.last().after($temp);
       $morerow.remove();
 
       hn.endless_loading = false;
